@@ -1,0 +1,6 @@
+# Enforces lf as newlines
+* text eol=lf
+
+# Mark as binary files
+*.png binary
+*.ico binary

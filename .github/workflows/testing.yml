@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  linux-test:
+    name: Linux
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, latest]
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Lint with prettier
+        run: yarn lint
