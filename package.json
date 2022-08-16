@@ -1,14 +1,14 @@
 {
 	"name": "songbook",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"type": "module",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"lint": "prettier --check src README.md",
-		"format": "prettier --write src README.md"
+		"lint": "prettier --check src ./index.html *.md *.json *.ts",
+		"format": "prettier --write src ./index.html *.md *.json *.ts"
 	},
 	"dependencies": {
 		"@tanstack/react-location": "^3.7.4",
