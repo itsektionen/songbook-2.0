@@ -12,7 +12,7 @@ export default function SongList(): JSX.Element {
 	const { songs, loading } = useSongs();
 	const [baseSongs, setBaseSongs] = useState<Song[]>([]);
 	const [displaySongs, setDisplaySongs] = useState<Song[]>([]);
-	const { search } = useSearch();
+	const { search, filter } = useSearch();
 
 	const isFilteredList = !!songIds;
 
@@ -30,6 +30,7 @@ export default function SongList(): JSX.Element {
 		const normalizedSearch = search.normalize('NFD').toLowerCase();
 		const filteredSongs: Song[] = [];
 		baseSongs.forEach((song) => {
+			if (filter.length && !filter.every((tag) => song.tags.includes(tag))) return;
 			if (song.title.normalize('NFD').toLowerCase().includes(normalizedSearch))
 				return filteredSongs.push(song);
 			if (song.content.normalize('NFD').toLowerCase().includes(normalizedSearch))
@@ -37,7 +38,7 @@ export default function SongList(): JSX.Element {
 		});
 
 		setDisplaySongs(filteredSongs);
-	}, [baseSongs, search]);
+	}, [baseSongs, search, filter]);
 
 	return (
 		<main className="SongList">

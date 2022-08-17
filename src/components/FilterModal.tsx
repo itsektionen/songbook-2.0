@@ -1,0 +1,68 @@
+import { useEffect, useState } from 'react';
+import { Tag, TAGS } from '../definitions/tag';
+import Modal, { ModalButtonGroup, ModalProps } from './Modal';
+import TagBadge from './TagBadge';
+
+type FilterModalProps = Omit<ModalProps, 'innerClassName' | 'children'> & {
+	onConfirm?: (filter: Tag[]) => void;
+	closeOnConfirm?: boolean;
+	startValue?: Tag[];
+};
+
+export default function FilterModal({
+	isOpen,
+	onClose,
+	onConfirm,
+	closeOnConfirm = true,
+	startValue = [],
+}: FilterModalProps): JSX.Element {
+	const [filter, setFilter] = useState<Tag[]>(startValue);
+
+	useEffect(() => {
+		setFilter(startValue);
+	}, [isOpen]);
+
+	return (
+		<Modal isOpen={isOpen} onClose={onClose} innerClassName="Filter-modal">
+			<div className="flex-col gap-sm">
+				{TAGS.map((tag) => (
+					<label key={tag}>
+						<input
+							type="checkbox"
+							checked={filter.includes(tag)}
+							onChange={() => {
+								if (!filter.includes(tag)) setFilter([...filter, tag]);
+								else setFilter(filter.filter((f) => f !== tag));
+							}}
+						/>
+						{/* <span>{TAG_NAMES[tag]}</span> */}
+						<TagBadge tag={tag} />
+					</label>
+				))}
+			</div>
+			<ModalButtonGroup>
+				<button onClick={onClose} style={{ color: '#de423a' }}>
+					Cancel
+				</button>
+				<button
+					onClick={() => {
+						onConfirm?.([]);
+						if (closeOnConfirm) onClose?.();
+					}}
+					style={{ color: '#2037c0' }}
+				>
+					Reset
+				</button>
+				<button
+					onClick={() => {
+						onConfirm?.(filter);
+						if (closeOnConfirm) onClose?.();
+					}}
+					style={{ color: '#1dc030' }}
+				>
+					Confirm
+				</button>
+			</ModalButtonGroup>
+		</Modal>
+	);
+}

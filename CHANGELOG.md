@@ -8,7 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - BookmarksList view
-- Filtering on tags
+
+## [0.2.0] - 2022-08-17
+
+### Added
+
+- Filtering based on songs
+- Basic reusable `Modal` component
 
 ## [0.1.1] - 2022-08-16
 

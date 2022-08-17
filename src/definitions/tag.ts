@@ -26,3 +26,17 @@ export const TAGS = <const>[
 ];
 
 export type Tag = typeof TAGS[number];
+
+export const TAG_NAMES = {
+	[GASUQUE]: 'Gasque',
+	[BEER]: 'Beer',
+	[WINE]: 'Wine',
+	[SNAPS]: 'Nubbe',
+	[PUNSCH]: 'Punsch',
+	[FOREIGN]: 'Foreign',
+	[NERDY]: 'Nerdy',
+	[ESOTERIC]: 'Esoteric',
+	[SOLEMN]: 'Solemn',
+	[SWE]: 'Swedish',
+	[ENG]: 'English',
+};
