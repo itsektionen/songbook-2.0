@@ -1,16 +1,18 @@
 // import Bookmarks from '../icons/Bookmarks';
+import Filter from '../icons/Filter';
 import Left from '../icons/Left';
-// import Filter from '../icons/Filter';
 import House from '../icons/House';
 import { Link, useLocation } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 import { useSearch } from '../context/searchContext';
+import FilterModal from './FilterModal';
 
 export default function Navbar(): JSX.Element {
 	const location = useLocation();
 	const [from, setFrom] = useState<'home' | 'list'>();
-	const { search, setSearch } = useSearch();
+	const { search, setSearch, filter, setFilter } = useSearch();
 	const [lastListView, setLastListView] = useState<string>();
+	const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
 	useEffect(() => {
 		const { pathname } = location.current;
@@ -41,50 +43,58 @@ export default function Navbar(): JSX.Element {
 	}, [location.current.pathname]);
 
 	useEffect(() => {
-		if (!lastListView && !search) return;
 		if (location.current.pathname === lastListView) return;
+		if (!lastListView && (!search || !filter.length)) return;
 
 		if (from === 'list') return location.history.back();
 		location.history.push(lastListView || '/');
-	}, [search]);
+	}, [search, filter]);
 
 	return (
-		<nav>
-			<div className="menu">
-				<div className="flex-row items-center">
-					<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>
-						<button
-							disabled={location.current.pathname === '/'}
-							onClick={from === 'home' ? location.history.back : undefined}
-						>
-							<House />
-						</button>
-					</Link>
+		<>
+			<nav>
+				<div className="menu">
+					<div className="flex-row items-center">
+						<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>
+							<button
+								disabled={location.current.pathname === '/'}
+								onClick={from === 'home' ? location.history.back : undefined}
+							>
+								<House />
+							</button>
+						</Link>
 
-					{from === 'list' && (
-						<button onClick={location.history.back}>
-							<Left />
+						{from === 'list' && (
+							<button onClick={location.history.back}>
+								<Left />
+							</button>
+						)}
+						<h1>Songbook</h1>
+					</div>
+					<div className="flex-row">
+						<button onClick={() => setFilterOpen(true)}>
+							<Filter />
 						</button>
-					)}
-					<h1>Songbook</h1>
+						{/* <Link to="/bookmarks">
+							<button>
+								<Bookmarks />
+							</button>
+						</Link> */}
+					</div>
 				</div>
-				<div className="flex-row">
-					{/* <button>
-						<Filter />
-					</button>
-					<Link to="/bookmarks">
-						<button>
-							<Bookmarks />
-						</button>
-					</Link> */}
-				</div>
-			</div>
-			<input
-				className="search"
-				value={search}
-				onChange={(e) => setSearch(e.currentTarget.value)}
-				placeholder="Search for title or text"
+				<input
+					className="search"
+					value={search}
+					onChange={(e) => setSearch(e.currentTarget.value)}
+					placeholder="Search for title or text"
+				/>
+			</nav>
+			<FilterModal
+				isOpen={filterOpen}
+				onClose={() => setFilterOpen(false)}
+				onConfirm={setFilter}
+				startValue={filter}
 			/>
-		</nav>
+		</>
 	);
 }
