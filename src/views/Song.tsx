@@ -51,13 +51,8 @@ export default function SongDetails(): JSX.Element {
 					</div>
 
 					<div className="song-content">
-						<ReactMarkdown
-							components={{
-								p: ({ children }) => <p>{children}</p>,
-								h1: ({ children }) => <h2>{children}</h2>,
-							}}
-						>
-							{song.content || '# Song missing'}
+						<ReactMarkdown components={{ h1: ({ children }) => <h2>{children}</h2> }}>
+							{song.content || '# Could not find the song'}
 						</ReactMarkdown>
 					</div>
 				</>
