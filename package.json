@@ -8,7 +8,8 @@
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"lint": "prettier --check src ./index.html *.md *.json *.ts",
-		"format": "prettier --write src ./index.html *.md *.json *.ts"
+		"format": "prettier --write src ./index.html *.md *.json *.ts",
+		"serve": "serve dist/ -l 8080"
 	},
 	"dependencies": {
 		"@tanstack/react-location": "^3.7.4",
@@ -17,7 +18,8 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-markdown": "^8.0.3",
-		"react-toastify": "^9.0.8"
+		"react-toastify": "^9.0.8",
+		"serve": "^14.0.1"
 	},
 	"devDependencies": {
 		"@types/react": "^18.0.15",
