@@ -1,8 +1,10 @@
+name: Test
+
 on: [push]
 
 jobs:
-  linux-test:
-    name: Linux
+  test:
+    name: Linux test
     runs-on: ubuntu-latest
     strategy:
       matrix:
