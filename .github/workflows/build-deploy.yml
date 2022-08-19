@@ -1,16 +1,12 @@
 name: Build and deploy
 
 on:
-  workflow_run:
-    workflows: [Test]
-    types: [completed]
+  push:
     branches: [master]
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Deploy
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Build container
