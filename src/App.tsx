@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import { parseBase64Ids } from './util/base64Ids';
 import BookmarksList from './views/BookmarksList';
 
+import '@fontsource/open-sans/variable.css';
+
 const location = new ReactLocation();
 
 const routes: Route<DefaultGenerics>[] = [

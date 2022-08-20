@@ -12,6 +12,7 @@
 		"serve": "serve dist/ -l 8080"
 	},
 	"dependencies": {
+		"@fontsource/open-sans": "^4.5.11",
 		"@tanstack/react-location": "^3.7.4",
 		"axios": "^0.27.2",
 		"nanoid": "^4.0.0",
