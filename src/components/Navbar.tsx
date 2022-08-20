@@ -6,6 +6,8 @@ import { Link, useLocation } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 import { useSearch } from '../context/searchContext';
 import FilterModal from './FilterModal';
+import Search from '../icons/Search';
+import Clear from '../icons/Clear';
 
 export default function Navbar(): JSX.Element {
 	const location = useLocation();
@@ -82,12 +84,27 @@ export default function Navbar(): JSX.Element {
 						</Link> */}
 					</div>
 				</div>
-				<input
-					className="search"
-					value={search}
-					onChange={(e) => setSearch(e.currentTarget.value)}
-					placeholder="Search for title or text"
-				/>
+				<div className="search">
+					<button onClick={() => document.getElementById('searchbar')?.focus()}>
+						<Search size="sm" />
+					</button>
+					<input
+						id="searchbar"
+						value={search}
+						onChange={(e) => setSearch(e.currentTarget.value)}
+						placeholder="Search for title or text"
+					/>
+					{!!search && (
+						<button
+							onClick={() => {
+								setSearch('');
+								document.getElementById('searchbar')?.focus();
+							}}
+						>
+							<Clear size="sm" />
+						</button>
+					)}
+				</div>
 			</nav>
 			<FilterModal
 				isOpen={filterOpen}
