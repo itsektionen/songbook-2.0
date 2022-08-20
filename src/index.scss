@@ -17,8 +17,15 @@ $main-list-padding: 0.5rem 0 0.75rem;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 
-	--background: 255, 255, 255;
-	--foreground: 0, 0, 0;
+	@media (prefers-color-scheme: dark) {
+		--background: 32, 32, 45;
+		--foreground: 230, 230, 230;
+	}
+
+	@media (prefers-color-scheme: light) {
+		--background: 255, 255, 255;
+		--foreground: 0, 0, 0;
+	}
 	--primary: 64, 104, 125;
 	--primary-medium: 46, 81, 99;
 	--primary-dark: 28, 42, 51;
@@ -34,7 +41,7 @@ body,
 	margin: 0;
 	padding: 0;
 	color: rgba(var(--foreground), 0.85);
-	background-color: var(--background);
+	background-color: rgba(var(--background));
 	height: 100vh;
 
 	overflow: hidden;
@@ -81,7 +88,7 @@ nav {
 	div.menu {
 		height: $menu-height;
 		background-color: rgb(var(--primary-medium));
-		color: rgba(var(--background), 1);
+		color: #fff;
 
 		@extend .flex-row;
 		@extend .space-between;
@@ -127,6 +134,7 @@ nav {
 			flex: 1;
 			height: $searchbar-height;
 			background-color: rgb(var(--background));
+			color: rgb(var(--foreground));
 			border: none;
 			padding: 0.25rem 0.3rem;
 			font-size: 1.1rem;
@@ -216,15 +224,20 @@ main.BookmarksList {
 
 .SongListItem {
 	@extend .list-item;
+	
+	> li {
+		background-color: rgba(var(--background));
 
-	> li > div {
-		p {
-			margin: 0.2rem 0 0 0;
-			white-space: nowrap;
-			overflow-x: hidden;
-			text-overflow: ellipsis;
+		> div {
+			p {
+				margin: 0.2rem 0 0 0;
+				white-space: nowrap;
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+			}
 		}
 	}
+
 }
 
 .BookmarkListItem {
