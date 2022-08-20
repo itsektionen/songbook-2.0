@@ -8,6 +8,8 @@ import { useSearch } from '../context/searchContext';
 import FilterModal from './FilterModal';
 import Search from '../icons/Search';
 import Clear from '../icons/Clear';
+import { detectColorScheme, switchTheme } from '../util/colorScheme';
+import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function Navbar(): JSX.Element {
 	const location = useLocation();
@@ -74,6 +76,7 @@ export default function Navbar(): JSX.Element {
 						<h1>Songbook</h1>
 					</div>
 					<div className="flex-row">
+						<ColorSchemeToggle />
 						<button onClick={() => setFilterOpen(true)}>
 							<Filter />
 						</button>
