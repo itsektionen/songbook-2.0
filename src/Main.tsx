@@ -5,7 +5,7 @@ import App from './App';
 import { BookmarksProvider } from './context/bookmarksContext';
 import { SearchProvider } from './context/searchContext';
 import { SongProvider } from './context/songContext';
-import './index.scss';
+import './style/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -54,7 +54,7 @@ export default function Navbar(): JSX.Element {
 
 	return (
 		<>
-			<nav>
+			<nav className="navbar">
 				<div className="menu">
 					<div className="flex-row items-center">
 						<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>

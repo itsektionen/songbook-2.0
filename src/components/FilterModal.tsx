@@ -58,7 +58,7 @@ export default function FilterModal({
 						onConfirm?.(filter);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: '#1dc030' }}
+					style={{ color: '#00750e' }}
 				>
 					Confirm
 				</button>

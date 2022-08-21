@@ -1,0 +1,18 @@
+@use '../shared.scss' as *;
+
+.BookmarkListItem {
+	@extend .list-item;
+
+	button.action {
+		padding: 0.3rem;
+		margin-right: 0.1rem;
+		border-radius: 0.4rem;
+
+		transition: background-color 0.1s ease-in;
+		background-color: rgba(var(--foreground), 0);
+
+		&:hover {
+			background-color: rgba(var(--foreground), 0.1);
+		}
+	}
+}

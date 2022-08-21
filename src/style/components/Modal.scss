@@ -1,0 +1,75 @@
+@use '../shared.scss' as *;
+
+div.Modal-outer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 3rem 1rem;
+	@extend .flex-row;
+	@extend .items-center;
+	@extend .content-center;
+
+	background-color: rgba(var(--foreground), 0.3);
+	opacity: 0;
+	z-index: -99;
+
+	&.visible {
+		z-index: 99;
+		animation: visible 0.2s;
+		opacity: 1;
+
+		@keyframes visible {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	}
+
+	> div.Modal-inner {
+		background-color: rgb(var(--background));
+		border-radius: 0.25rem;
+		width: 100%;
+		max-width: 40rem;
+		max-height: 100%;
+		padding: 1rem;
+
+		> .Modal-button-group {
+			margin-top: 1rem;
+
+			@extend .flex-row;
+			@extend .content-end;
+			@extend .gap-md;
+
+			button {
+				position: relative;
+				padding: 0.75rem;
+				border-radius: 0.4rem;
+
+				font-weight: 600;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: currentColor;
+					opacity: 0.05;
+					transition: opacity 0.1s ease-in;
+
+					border-radius: 0.4rem;
+				}
+
+				&:hover::before {
+					opacity: 0.2;
+				}
+			}
+		}
+	}
+}
