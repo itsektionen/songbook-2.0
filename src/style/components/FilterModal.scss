@@ -1,0 +1,16 @@
+@use '../shared.scss';
+
+.Filter-modal {
+	@extend .flex-col;
+	@extend .gap-sm;
+
+	label {
+		@extend .flex-row;
+		@extend .items-center;
+
+		font-size: 1rem;
+		> span {
+			margin-left: 0.4rem;
+		}
+	}
+}
