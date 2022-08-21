@@ -19,3 +19,5 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Lint with prettier
         run: yarn lint
+      - name: Compile with tsc
+        run: yarn tsc
