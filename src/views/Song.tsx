@@ -59,7 +59,9 @@ export default function SongDetails(): JSX.Element {
 					</div>
 				</>
 			) : (
-				<h2>Couldn't find the song you were looking for</h2>
+				<h2 className="self-center" style={{ textAlign: 'center' }}>
+					{"Couldn't find the song you were looking for :("}
+				</h2>
 			)}
 		</main>
 	);
