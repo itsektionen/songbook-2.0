@@ -43,6 +43,8 @@ main {
 	margin-top: $navbar-height;
 	overflow-y: scroll;
 	flex: 1;
+
+	@extend .flex-col;
 }
 
 h1 {

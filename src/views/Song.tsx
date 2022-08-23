@@ -1,6 +1,7 @@
 import { useLocation, useMatch } from '@tanstack/react-location';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
+import Spinner from '../components/Spinner';
 import TagBadge from '../components/TagBadge';
 import { useSongs } from '../context/songContext';
 // import AddToBookmark from '../icons/AddToBookmark';
@@ -22,8 +23,9 @@ export default function SongDetails(): JSX.Element {
 
 	return (
 		<main className="Song">
-			{loading && <h2>Loading...</h2>}
-			{song ? (
+			{loading ? (
+				<Spinner />
+			) : song ? (
 				<>
 					<div className="flex-row space-between items-start">
 						<h1>{song.title}</h1>
@@ -52,12 +54,14 @@ export default function SongDetails(): JSX.Element {
 
 					<div className="song-content">
 						<ReactMarkdown components={{ h1: ({ children }) => <h2>{children}</h2> }}>
-							{song.content || '# Could not find the song'}
+							{song.content || ''}
 						</ReactMarkdown>
 					</div>
 				</>
 			) : (
-				<h2>Loading...</h2>
+				<h2 className="self-center" style={{ textAlign: 'center' }}>
+					{"Couldn't find the song you were looking for :("}
+				</h2>
 			)}
 		</main>
 	);

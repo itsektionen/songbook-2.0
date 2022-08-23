@@ -1,6 +1,7 @@
 import { Link, useMatch } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 import SongListItem from '../components/SongListItem';
+import Spinner from '../components/Spinner';
 import { useSearch } from '../context/searchContext';
 import { useSongs } from '../context/songContext';
 import { Song } from '../definitions/songs';
@@ -43,7 +44,7 @@ export default function SongList(): JSX.Element {
 	return (
 		<main className="SongList">
 			{isFilteredList && name && <h1>{name}</h1>}
-			{loading && <h2>Loading...</h2>}
+			{loading && <Spinner />}
 			{displaySongs.length > 0 && (
 				<ul>
 					{displaySongs.map((song) => (
