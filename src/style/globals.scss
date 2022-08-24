@@ -32,16 +32,15 @@ body,
 	padding: 0;
 	color: rgba(var(--foreground), 0.85);
 	background-color: var(--background);
-	height: 100vh;
+	min-height: 100vh;
+	overflow-x: hidden;
 
-	overflow: hidden;
 	@extend .flex-col;
 }
 
 // Components
 main {
 	margin-top: $navbar-height;
-	overflow-y: scroll;
 	flex: 1;
 
 	@extend .flex-col;

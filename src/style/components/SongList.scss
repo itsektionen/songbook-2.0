@@ -8,4 +8,9 @@ main.SongList {
 		margin: 0;
 		padding: 0;
 	}
+
+	.no-songs {
+		text-align: center;
+		padding: $main-default-padding;
+	}
 }
