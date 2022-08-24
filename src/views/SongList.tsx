@@ -57,8 +57,9 @@ export default function SongList(): JSX.Element {
 	return (
 		<main className="SongList">
 			{isFilteredList && name && <h1>{name}</h1>}
-			{loading && <Spinner />}
-			{displaySongs.length > 0 ? (
+			{loading ? (
+				<Spinner />
+			) : displaySongs.length > 0 ? (
 				<ul>
 					{displaySongs.map((song) => (
 						<SongListItem song={song} from={isFilteredList ? 'list' : 'home'} key={song.id} />
