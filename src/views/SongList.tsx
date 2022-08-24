@@ -10,7 +10,7 @@ export default function SongList(): JSX.Element {
 	const { data, search: searchParams } = useMatch();
 	const { ids: songIds } = data as { ids?: number[]; error?: string };
 	const { name } = searchParams as { name?: string };
-	const { songs, loading } = useSongs();
+	const { songs, songCollection, loading } = useSongs();
 	const [baseSongs, setBaseSongs] = useState<Song[]>([]);
 	const [displaySongs, setDisplaySongs] = useState<Song[]>([]);
 	const { search, filter } = useSearch();
@@ -18,16 +18,23 @@ export default function SongList(): JSX.Element {
 	const isFilteredList = !!songIds;
 
 	useEffect(() => {
-		if (songs)
-			setBaseSongs(isFilteredList ? songs.filter((song) => songIds.includes(song.id)) : songs);
-		else setBaseSongs([]);
-	}, [songs, songIds]);
+		if (!songs) return setBaseSongs([]);
+		if (!isFilteredList) return setBaseSongs(songs);
+
+		const listSongs: Song[] = [];
+		const uniqueness: Record<number, true> = {};
+		songIds.forEach((id) => {
+			if (songCollection?.[id] && !uniqueness[id]) {
+				listSongs.push(songCollection[id]);
+				uniqueness[id] = true;
+			}
+		});
+		setBaseSongs(listSongs);
+	}, [songs, songCollection, songIds]);
 
 	useEffect(() => {
-		setDisplaySongs(baseSongs);
-	}, [baseSongs]);
+		if (!search && !filter.length) return setDisplaySongs(baseSongs);
 
-	useEffect(() => {
 		const normalizedSearch = search.normalize('NFD').toLowerCase();
 		const filteredSongs: Song[] = [];
 		baseSongs.forEach((song) => {
