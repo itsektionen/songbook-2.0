@@ -42,16 +42,16 @@ export default function SongList(): JSX.Element {
 	}, [baseSongs, search, filter]);
 
 	function noSongsText(): string {
-		if (!songs?.length) return 'Could not find any songs';
-		if (!baseSongs.length) return "Couldn't find any songs in the list";
+		if (!songs?.length) return 'Could not find any songs :(';
+		if (!baseSongs.length) return "Couldn't find any songs with the IDs from the list :(";
 		if (!displaySongs.length) {
 			const params: string[] = [];
 			if (search) params.push('search');
 			if (filter.length) params.push('filter');
-			return `Couldn't find any songs matching your ${params.join(' and ')}`;
+			return `Couldn't find any songs matching your ${params.join(' and ')} :/`;
 		}
 
-		return 'Something went wrong';
+		return 'Something went wrong :/';
 	}
 
 	return (
@@ -65,7 +65,7 @@ export default function SongList(): JSX.Element {
 					))}
 				</ul>
 			) : (
-				<span className="no-songs">{noSongsText()}</span>
+				<h2 className="no-songs">{noSongsText()}</h2>
 			)}
 		</main>
 	);
