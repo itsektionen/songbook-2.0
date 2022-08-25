@@ -10,15 +10,17 @@ export default function SongList(): JSX.Element {
 	const { data, search: searchParams } = useMatch();
 	const { ids: songIds } = data as { ids?: number[]; error?: string };
 	const { name } = searchParams as { name?: string };
-	const { songs, songCollection, loading } = useSongs();
-	const [baseSongs, setBaseSongs] = useState<Song[]>([]);
-	const [displaySongs, setDisplaySongs] = useState<Song[]>([]);
+	const { songs, songCollection, loading: loadingSongs } = useSongs();
 	const { search, filter } = useSearch();
+
+	const [baseSongs, setBaseSongs] = useState<Song[]>();
+	const [displaySongs, setDisplaySongs] = useState<Song[]>();
+	const [loading, setLoading] = useState<boolean>(true);
 
 	const isFilteredList = !!songIds;
 
 	useEffect(() => {
-		if (!songs) return setBaseSongs([]);
+		if (!songs) return;
 		if (!isFilteredList) return setBaseSongs(songs);
 
 		const listSongs: Song[] = [];
@@ -37,7 +39,7 @@ export default function SongList(): JSX.Element {
 
 		const normalizedSearch = search.normalize('NFD').toLowerCase();
 		const filteredSongs: Song[] = [];
-		baseSongs.forEach((song) => {
+		baseSongs?.forEach((song) => {
 			if (filter.length && !filter.every((tag) => song.tags.includes(tag))) return;
 			if (song.title.normalize('NFD').toLowerCase().includes(normalizedSearch))
 				return filteredSongs.push(song);
@@ -48,10 +50,14 @@ export default function SongList(): JSX.Element {
 		setDisplaySongs(filteredSongs);
 	}, [baseSongs, search, filter]);
 
-	function noSongsText(): string {
+	useEffect(() => {
+		setLoading(loadingSongs || !songs || !baseSongs || !displaySongs);
+	}, [songs, baseSongs, displaySongs, loadingSongs]);
+
+	function noSongsString(): string {
 		if (!songs?.length) return 'Could not find any songs :(';
-		if (!baseSongs.length) return "Couldn't find any songs with the IDs from the list :(";
-		if (!displaySongs.length) {
+		if (!baseSongs?.length) return "Couldn't find any songs with the IDs from the list :(";
+		if (!displaySongs?.length) {
 			const params: string[] = [];
 			if (search) params.push('search');
 			if (filter.length) params.push('filter');
@@ -66,14 +72,14 @@ export default function SongList(): JSX.Element {
 			{isFilteredList && name && <h1>{name}</h1>}
 			{loading ? (
 				<Spinner />
-			) : displaySongs.length > 0 ? (
+			) : displaySongs?.length ? (
 				<ul>
 					{displaySongs.map((song) => (
 						<SongListItem song={song} from={isFilteredList ? 'list' : 'home'} key={song.id} />
 					))}
 				</ul>
 			) : (
-				<h2 className="no-songs">{noSongsText()}</h2>
+				<h2 className="no-songs">{noSongsString()}</h2>
 			)}
 		</main>
 	);
