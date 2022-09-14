@@ -1,0 +1,16 @@
+@use '../globals.scss' as *;
+@use '../shared.scss' as *;
+
+.NewBookmarkModal {
+	@extend .flex-col;
+
+	h1 {
+		font-size: 1.4rem;
+		margin: 0 0 1rem;
+	}
+
+	input {
+		font-size: 1.1rem;
+		padding: 0.25rem;
+	}
+}

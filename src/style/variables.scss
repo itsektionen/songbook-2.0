@@ -2,5 +2,7 @@ $menu-height: 3rem;
 $searchbar-height: 2rem;
 $navbar-height: $menu-height + $searchbar-height;
 
-$main-default-padding: 0.75rem 0.75rem;
-$main-list-padding: 0.5rem 0 0.75rem;
+$main-std-padding: 0.75rem;
+
+$main-default-padding: $main-std-padding;
+$main-list-padding: 0.5rem 0 $main-std-padding;

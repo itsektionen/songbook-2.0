@@ -35,7 +35,6 @@ export default function FilterModal({
 								else setFilter(filter.filter((f) => f !== tag));
 							}}
 						/>
-						{/* <span>{TAG_NAMES[tag]}</span> */}
 						<TagBadge tag={tag} />
 					</label>
 				))}

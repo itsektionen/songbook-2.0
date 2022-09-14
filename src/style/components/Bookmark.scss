@@ -1,0 +1,45 @@
+@use '../variables.scss' as *;
+@use '../shared.scss' as *;
+
+main.Bookmark {
+	padding: $main-list-padding;
+
+	.top-row {
+		margin: 0 $main-std-padding;
+
+		@extend .flex-row;
+		@extend .items-center;
+		@extend .gap-md;
+
+		input {
+			font-size: 1.5rem;
+			font-weight: 600;
+			border: 0.1rem solid rgba(var(--foreground), 0.1);
+			border-radius: 0.4rem;
+			padding: 0.3rem;
+			flex: 1;
+		}
+
+		button {
+			@include colored-button;
+		}
+	}
+
+	.bottom-row {
+		margin: 0 $main-std-padding;
+
+		@extend .flex-row;
+		@extend .content-end;
+		@extend .gap-sm;
+
+		button {
+			@include colored-button;
+			padding: 0.5rem 0.75rem;
+		}
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+}

@@ -46,29 +46,8 @@ div.Modal-outer {
 			@extend .gap-md;
 
 			button {
-				position: relative;
-				padding: 0.75rem;
-				border-radius: 0.4rem;
-
-				font-weight: 600;
-
-				&::before {
-					content: '';
-					position: absolute;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					background-color: currentColor;
-					opacity: 0.05;
-					transition: opacity 0.1s ease-in;
-
-					border-radius: 0.4rem;
-				}
-
-				&:hover::before {
-					opacity: 0.2;
-				}
+				@include colored-button;
+				padding: 0.5rem 0.75rem;
 			}
 		}
 	}

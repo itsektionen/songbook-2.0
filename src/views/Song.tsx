@@ -1,10 +1,12 @@
 import { useMatch } from '@tanstack/react-location';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
+import AddToBookmarkModal from '../components/AddToBookmarkModal';
 import Spinner from '../components/Spinner';
 import TagBadge from '../components/TagBadge';
 import { useSongs } from '../context/songContext';
-// import AddToBookmark from '../icons/AddToBookmark';
+import AddToBookmark from '../icons/AddToBookmark';
 import LinkTo from '../icons/LinkTo';
 
 export default function SongDetails(): JSX.Element {
@@ -13,6 +15,7 @@ export default function SongDetails(): JSX.Element {
 		params: { songId },
 	} = useMatch();
 	const song = songCollection?.[songId];
+	const [addToBookmarkModalOpen, setAddToBookmarkModalOpen] = useState<boolean>(false);
 
 	function writeLinkToClipboard() {
 		if (song)
@@ -33,9 +36,9 @@ export default function SongDetails(): JSX.Element {
 							<button className="action" onClick={writeLinkToClipboard}>
 								<LinkTo />
 							</button>
-							{/* <button className="action">
+							<button className="action" onClick={() => setAddToBookmarkModalOpen(true)}>
 								<AddToBookmark />
-							</button> */}
+							</button>
 						</div>
 					</div>
 					<div>
@@ -57,6 +60,12 @@ export default function SongDetails(): JSX.Element {
 							{song.content || ''}
 						</ReactMarkdown>
 					</div>
+
+					<AddToBookmarkModal
+						isOpen={addToBookmarkModalOpen}
+						onClose={() => setAddToBookmarkModalOpen(false)}
+						song={song}
+					/>
 				</>
 			) : (
 				<h2 className="self-center" style={{ textAlign: 'center' }}>

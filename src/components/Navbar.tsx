@@ -1,4 +1,4 @@
-// import Bookmarks from '../icons/Bookmarks';
+import Bookmarks from '../icons/Bookmarks';
 import Filter from '../icons/Filter';
 import Left from '../icons/Left';
 import House from '../icons/House';
@@ -77,11 +77,11 @@ export default function Navbar(): JSX.Element {
 						<button onClick={() => setFilterOpen(true)}>
 							<Filter />
 						</button>
-						{/* <Link to="/bookmarks">
+						<Link to="/bookmarks">
 							<button>
 								<Bookmarks />
 							</button>
-						</Link> */}
+						</Link>
 					</div>
 				</div>
 				<div className="search">

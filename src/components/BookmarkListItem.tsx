@@ -1,17 +1,15 @@
-import { Link } from '@tanstack/react-location';
+import { Link, useLocation } from '@tanstack/react-location';
 import { Bookmark } from '../definitions/bookmarks';
 import Edit from '../icons/Edit';
 import { generateBase64Id } from '../util/base64Ids';
 
 type BookmarkListItemProps = {
 	bookmark: Bookmark;
-	openEditModal: () => void;
 };
 
-export default function BookmarkListItem({
-	bookmark,
-	openEditModal,
-}: BookmarkListItemProps): JSX.Element {
+export default function BookmarkListItem({ bookmark }: BookmarkListItemProps): JSX.Element {
+	const location = useLocation();
+
 	return (
 		<Link
 			to={`/l/${bookmark.songs.map((id) => generateBase64Id(id)).join('')}`}
@@ -25,7 +23,7 @@ export default function BookmarkListItem({
 						className="action"
 						onClick={(event) => {
 							event.preventDefault();
-							openEditModal();
+							location.history.push(`/bookmarks/${bookmark.id}`);
 						}}
 					>
 						<Edit />
