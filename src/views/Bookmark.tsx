@@ -41,6 +41,7 @@ export default function Bookmark(): JSX.Element {
 	}, [bookmarkName, bookmarkSongs]);
 
 	function onDelete(): void {
+		if (!confirm('Are you sure you want to delete this bookmark?')) return;
 		deleteBookmark(bookmarkId);
 		location.history.push('/bookmarks');
 	}
@@ -75,16 +76,19 @@ export default function Bookmark(): JSX.Element {
 					</ul>
 
 					<div className="bottom-row">
-						<button style={{ color: 'red' }}>Cancel</button>
+						<button style={{ color: 'red' }} onClick={() => location.history.push('/bookmarks')}>
+							Cancel
+						</button>
 						<button
 							disabled={!edited}
 							style={{ color: 'green' }}
-							onClick={() =>
+							onClick={() => {
 								updateBookmark(bookmarkId, {
 									name: bookmarkName,
 									songs: bookmarkSongs.map((song) => song.id),
-								})
-							}
+								});
+								location.history.push('/bookmarks');
+							}}
 						>
 							Confirm
 						</button>

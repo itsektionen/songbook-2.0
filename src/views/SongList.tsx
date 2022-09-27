@@ -8,7 +8,7 @@ import { Song } from '../definitions/songs';
 
 export default function SongList(): JSX.Element {
 	const { data, search: searchParams } = useMatch();
-	const { ids: songIds } = data as { ids?: number[]; error?: string };
+	const { ids: songIds } = data as { ids?: number[] };
 	const { name } = searchParams as { name?: string };
 	const { songs, songCollection, loading: loadingSongs } = useSongs();
 	const { search, filter } = useSearch();
@@ -56,6 +56,7 @@ export default function SongList(): JSX.Element {
 
 	function noSongsString(): string {
 		if (!songs?.length) return 'Could not find any songs :(';
+		if (isFilteredList && songIds.length >= 0) return 'There are no songs in this list :(';
 		if (!baseSongs?.length) return "Couldn't find any songs with the IDs from the list :(";
 		if (!displaySongs?.length) {
 			const params: string[] = [];
