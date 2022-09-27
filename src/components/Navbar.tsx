@@ -58,10 +58,7 @@ export default function Navbar(): JSX.Element {
 				<div className="menu">
 					<div className="flex-row items-center">
 						<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>
-							<button
-								disabled={location.current.pathname === '/'}
-								onClick={from === 'home' ? location.history.back : undefined}
-							>
+							<button onClick={from === 'home' ? location.history.back : undefined}>
 								<House />
 							</button>
 						</Link>
