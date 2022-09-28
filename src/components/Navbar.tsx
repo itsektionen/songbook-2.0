@@ -1,4 +1,4 @@
-// import Bookmarks from '../icons/Bookmarks';
+import Bookmarks from '../icons/Bookmarks';
 import Filter from '../icons/Filter';
 import Left from '../icons/Left';
 import House from '../icons/House';
@@ -58,10 +58,7 @@ export default function Navbar(): JSX.Element {
 				<div className="menu">
 					<div className="flex-row items-center">
 						<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>
-							<button
-								disabled={location.current.pathname === '/'}
-								onClick={from === 'home' ? location.history.back : undefined}
-							>
+							<button onClick={from === 'home' ? location.history.back : undefined}>
 								<House />
 							</button>
 						</Link>
@@ -77,11 +74,11 @@ export default function Navbar(): JSX.Element {
 						<button onClick={() => setFilterOpen(true)}>
 							<Filter />
 						</button>
-						{/* <Link to="/bookmarks">
+						<Link to="/bookmarks">
 							<button>
 								<Bookmarks />
 							</button>
-						</Link> */}
+						</Link>
 					</div>
 				</div>
 				<div className="search">

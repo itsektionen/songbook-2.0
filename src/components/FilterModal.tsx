@@ -35,13 +35,12 @@ export default function FilterModal({
 								else setFilter(filter.filter((f) => f !== tag));
 							}}
 						/>
-						{/* <span>{TAG_NAMES[tag]}</span> */}
 						<TagBadge tag={tag} />
 					</label>
 				))}
 			</div>
 			<ModalButtonGroup>
-				<button onClick={onClose} style={{ color: '#de423a' }}>
+				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Cancel
 				</button>
 				<button
@@ -49,7 +48,7 @@ export default function FilterModal({
 						onConfirm?.([]);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: '#2037c0' }}
+					style={{ color: 'rgb(var(--reset))' }}
 				>
 					Reset
 				</button>
@@ -58,7 +57,7 @@ export default function FilterModal({
 						onConfirm?.(filter);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: '#00750e' }}
+					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Confirm
 				</button>
