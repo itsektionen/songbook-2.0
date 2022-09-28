@@ -40,7 +40,7 @@ export default function FilterModal({
 				))}
 			</div>
 			<ModalButtonGroup>
-				<button onClick={onClose} style={{ color: '#de423a' }}>
+				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Cancel
 				</button>
 				<button
@@ -48,7 +48,7 @@ export default function FilterModal({
 						onConfirm?.([]);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: '#2037c0' }}
+					style={{ color: 'rgb(var(--reset))' }}
 				>
 					Reset
 				</button>
@@ -57,7 +57,7 @@ export default function FilterModal({
 						onConfirm?.(filter);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: '#00750e' }}
+					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Confirm
 				</button>

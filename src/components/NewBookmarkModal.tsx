@@ -24,7 +24,7 @@ export default function NewBookmarkModal({ isOpen, onClose }: NewBookmarkModalPr
 			/>
 
 			<ModalButtonGroup>
-				<button onClick={onClose} style={{ color: '#de423a' }}>
+				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Cancel
 				</button>
 				<button
@@ -32,7 +32,7 @@ export default function NewBookmarkModal({ isOpen, onClose }: NewBookmarkModalPr
 						createBookmark(name);
 						onClose?.();
 					}}
-					style={{ color: '#00750e' }}
+					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Create
 				</button>

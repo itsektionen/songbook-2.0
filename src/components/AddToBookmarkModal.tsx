@@ -67,10 +67,10 @@ export default function AddToBookmarkModal({
 			</div>
 
 			<ModalButtonGroup>
-				<button onClick={onClose} style={{ color: '#de423a' }}>
+				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Close
 				</button>
-				<button onClick={onSave} style={{ color: '#00750e' }}>
+				<button onClick={onSave} style={{ color: 'rgb(var(--confirm))' }}>
 					Save
 				</button>
 			</ModalButtonGroup>

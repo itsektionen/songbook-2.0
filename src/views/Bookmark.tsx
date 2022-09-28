@@ -54,7 +54,7 @@ export default function Bookmark(): JSX.Element {
 				<>
 					<div className="top-row" style={{ marginTop: '0.5rem' }}>
 						<input value={bookmarkName} onChange={(e) => setBookmarkName(e.target.value)} />
-						<button onClick={onDelete} style={{ color: '#dd3d0d' }}>
+						<button onClick={onDelete} style={{ color: 'rgb(var(--cancel))' }}>
 							<Trash />
 						</button>
 					</div>
@@ -76,12 +76,15 @@ export default function Bookmark(): JSX.Element {
 					</ul>
 
 					<div className="bottom-row">
-						<button style={{ color: 'red' }} onClick={() => location.history.push('/bookmarks')}>
+						<button
+							style={{ color: 'rgb(var(--cancel))' }}
+							onClick={() => location.history.push('/bookmarks')}
+						>
 							Cancel
 						</button>
 						<button
 							disabled={!edited}
-							style={{ color: 'green' }}
+							style={{ color: 'rgb(var(--confirm))' }}
 							onClick={() => {
 								updateBookmark(bookmarkId, {
 									name: bookmarkName,
