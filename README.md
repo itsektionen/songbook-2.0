@@ -48,9 +48,9 @@ All commits should include either `Related to #X` to or `Resolves #X` in the com
 
 Adds some feature
 
-Added this
-Removed that
-Updated something
+Adds this
+Removes that
+Updates something
 
 Resolves #13
 ```
@@ -69,4 +69,4 @@ Keep the history [simple and clean](https://www.youtube.com/watch?v=B1nDzB1P8GM)
 
 ## Deployment
 
-Deployment is automatically managed by github workflows.
+Deployment is automatically managed by GitHub workflows.
