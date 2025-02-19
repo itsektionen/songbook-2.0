@@ -1,4 +1,4 @@
-# The IN-Chapters Webapp Songbook 2.0
+# The IT-Chapters Webapp Songbook 2.0
 
 The chapters new and improved songbook (PWA) webapp!
 
@@ -45,14 +45,13 @@ To keep track of what work needs to/should be done, what is being done and what 
 All commits should include either `Related to #X` to or `Resolves #X` in the commit message. As in the following example:
 
 ```
+Add some feature
 
-Adds some feature
+Add this
+Remove that
+Update something
 
-Adds this
-Removes that
-Updates something
-
-Resolves #13
+Resolve #13
 ```
 
 This is done to make reading the history easy and understanding what the purspose of each commit was.

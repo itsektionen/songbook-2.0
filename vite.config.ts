@@ -24,9 +24,9 @@ export default defineConfig({
 		VitePWA({
 			registerType: 'autoUpdate',
 			manifest: {
-				name: 'IN-Songbook',
+				name: 'IT-Songbook',
 				short_name: 'Songbook',
-				description: 'The IN-Chapters Webapp Songbook 2.0',
+				description: 'The IT-Chapters Webapp Songbook 2.0',
 				theme_color: '#2e5163',
 				icons: [
 					{
@@ -46,7 +46,7 @@ export default defineConfig({
 					getCache({
 						name: 'songs.json',
 						pattern:
-							'https://raw.githubusercontent.com/insektionen/songlist/master/dist/songs.json',
+							'https://raw.githubusercontent.com/itsektionen/songlist/master/dist/songs.json',
 					}),
 				],
 				globPatterns: ['**/*.{js,css,html}', '*', 'assets/*'],
