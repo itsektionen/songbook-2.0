@@ -7,7 +7,7 @@
 	font-weight: 400;
 
 	color: rgba(var(--foreground), 0.85);
-	background-color: var(--primary-medium);
+	background-color: var(--primary-dark);
 
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -16,10 +16,8 @@
 
 	--background: 255, 255, 255;
 	--foreground: 0, 0, 0;
-	--primary: 64, 104, 125;
-	--primary-medium: 46, 81, 99;
-	--primary-dark: 28, 42, 51;
-	--primary-contrasty: 28, 104, 150;
+	--primary: 204, 153, 255;
+	--primary-dark: 64, 48, 80;
 
 	--confirm: 0, 117, 14;
 	--cancel: 222, 66, 58;

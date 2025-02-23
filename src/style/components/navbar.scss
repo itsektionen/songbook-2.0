@@ -12,7 +12,7 @@ nav.navbar {
 
 	div.menu {
 		height: $menu-height;
-		background-color: rgb(var(--primary-medium));
+		background-color: rgb(var(--primary-dark));
 		color: rgba(var(--background), 1);
 
 		@extend .flex-row;
