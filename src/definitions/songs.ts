@@ -20,4 +20,4 @@ export type SongsWithMeta = {
 };
 
 export const SONGS_JSON_URL =
-	'https://raw.githubusercontent.com/insektionen/songlist/master/dist/songs.json';
+	'https://raw.githubusercontent.com/itsektionen/songlist/master/dist/songs.json';

@@ -42,6 +42,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: 2222
+          port: 22
           envs: GITHUB_TOKEN,GITHUB_ACTOR
-          script: "cd songbook-2.0 && echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin && docker compose up -d"
+          script: 'cd songbook-2.0 && echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin && docker compose up -d'
