@@ -22,10 +22,6 @@ nav.navbar {
 			margin-right: 0;
 			font-size: 1.4rem;
 
-			&::before {
-				content: '';
-			}
-
 			@media (min-width: 20em) {
 				&::before {
 					content: 'IT-';
