@@ -27,7 +27,7 @@ export default defineConfig({
 				name: 'IT-Songbook',
 				short_name: 'Songbook',
 				description: 'The IT-Chapters Webapp Songbook 2.0',
-				theme_color: '#2e5163',
+				theme_color: '#403050',
 				icons: [
 					{
 						src: 'icon-md.png',

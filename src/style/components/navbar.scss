@@ -12,7 +12,7 @@ nav.navbar {
 
 	div.menu {
 		height: $menu-height;
-		background-color: rgb(var(--primary-medium));
+		background-color: rgb(var(--primary-dark));
 		color: rgba(var(--background), 1);
 
 		@extend .flex-row;
@@ -21,6 +21,18 @@ nav.navbar {
 		h1 {
 			margin-right: 0;
 			font-size: 1.4rem;
+
+			@media (min-width: 20em) {
+				&::before {
+					content: 'IT-';
+				}
+			}
+
+			@media (min-width: 27em) {
+				&::before {
+					content: "IT-Chapter's ";
+				}
+			}
 		}
 
 		button {
