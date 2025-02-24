@@ -21,6 +21,22 @@ nav.navbar {
 		h1 {
 			margin-right: 0;
 			font-size: 1.4rem;
+
+			&::before {
+				content: '';
+			}
+
+			@media (min-width: 20em) {
+				&::before {
+					content: 'IT-';
+				}
+			}
+
+			@media (min-width: 27em) {
+				&::before {
+					content: "IT-Chapter's ";
+				}
+			}
 		}
 
 		button {

@@ -68,7 +68,7 @@ export default function Navbar(): JSX.Element {
 								<Left />
 							</button>
 						)}
-						<h1>IT-Chapter's Songbook</h1>
+						<h1>Songbook</h1>
 					</div>
 					<div className="flex-row">
 						<button onClick={() => setFilterOpen(true)}>
