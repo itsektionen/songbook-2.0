@@ -4,13 +4,27 @@
 	@extend .flex-col;
 	@extend .gap-sm;
 
+	div {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(5.5em, 1fr));
+		justify-items: center;
+	}
+
 	label {
 		@extend .flex-row;
 		@extend .items-center;
 
-		font-size: 1rem;
+		> input {
+			display: none;
+		}
+
 		> span {
-			margin-left: 0.4rem;
+			font-size: 1.2rem;
+		}
+
+		> input:not(:checked) + span {
+			filter: grayscale(0.6) brightness(0.6);
+			transform: scale(0.9);
 		}
 	}
 }

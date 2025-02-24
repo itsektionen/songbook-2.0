@@ -24,7 +24,7 @@ export default function FilterModal({
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} innerClassName="Filter-modal">
-			<div className="flex-col gap-sm">
+			<div className="gap-md">
 				{TAGS.map((tag) => (
 					<label key={tag}>
 						<input
