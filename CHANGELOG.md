@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - BookmarksList view
 
+## [0.3.0] - 2025-02-24
+
+### Added
+
+- IT-Chapter rebranding instead of IN-Chapter
+
 ## [0.2.0] - 2022-08-17
 
 ### Added
