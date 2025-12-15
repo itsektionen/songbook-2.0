@@ -7,7 +7,7 @@ export type Song = {
 	melody?: string;
 	composer?: string;
 	tags: Tag[];
-	note: string[];
+	notes: string[];
 	sorting?: number;
 	deleted?: true;
 	content: string;
