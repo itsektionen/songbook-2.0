@@ -2,7 +2,7 @@
 @use '../shared.scss' as *;
 
 main.Song {
-	padding: 0.75rem 0.75rem;
+	padding: 0.75rem;
 
 	h1 {
 		margin: 0 0.5rem 0 0;
@@ -33,6 +33,21 @@ main.Song {
 		overflow-x: auto;
 		@extend .flex-row;
 		@extend .gap-sm;
+	}
+
+	details {
+		border-bottom: 1px solid rgba(var(--foreground), 0.6);
+		margin-bottom: 0.5rem;
+		padding-block: 0.5rem;
+
+		ul {
+			list-style: none;
+			margin: 0.5rem 0 0 0;
+			padding-left: 1rem;
+			font-size: 0.9rem;
+			color: rgba(var(--foreground), 0.6);
+			font-weight: 500;
+		}
 	}
 
 	div.song-content {
