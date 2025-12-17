@@ -1,3 +1,4 @@
+import React from 'react';
 import { nanoid } from 'nanoid';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Bookmark } from '../definitions/bookmarks';
@@ -28,7 +29,7 @@ function newBookmark(name: string, id: string = nanoid(10)): Bookmark {
 	return { id, name, songs: [] };
 }
 
-export function BookmarksProvider({ children }: { children: ReactNode }): JSX.Element {
+export function BookmarksProvider({ children }: { children: ReactNode }): React.ReactElement {
 	const [bookmarks, setBookmarks] = useState<Record<Bookmark['id'], Bookmark>>();
 
 	useEffect(() => {

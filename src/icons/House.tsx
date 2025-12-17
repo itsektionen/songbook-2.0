@@ -1,6 +1,7 @@
+import React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function House(props: IconProps): JSX.Element {
+export default function House(props: IconProps): React.ReactElement {
 	return (
 		<Icon {...props}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 576 512">

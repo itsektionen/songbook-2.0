@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import BookmarkListItem from '../components/BookmarkListItem';
 import NewBookmarkModal from '../components/NewBookmarkModal';
@@ -5,7 +6,7 @@ import Spinner from '../components/Spinner';
 import { useBookmarks } from '../context/bookmarksContext';
 import Plus from '../icons/Plus';
 
-export default function BookmarksList(): JSX.Element {
+export default function BookmarksList(): React.ReactElement {
 	const { bookmarks } = useBookmarks();
 	const [newBookmarkModalOpen, setNewBookmarkModalOpen] = useState<boolean>(false);
 

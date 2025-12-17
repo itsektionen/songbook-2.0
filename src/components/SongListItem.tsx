@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from '@tanstack/react-location';
 import { Song } from '../definitions/songs';
 import TagBadge from './TagBadge';
@@ -7,7 +8,7 @@ type SongItemProps = {
 	from?: 'home' | 'list';
 };
 
-export default function SongItem({ song, from }: SongItemProps): JSX.Element {
+export default function SongItem({ song, from }: SongItemProps): React.ReactElement {
 	return (
 		<Link to={`/s/${song.id}`} search={from && { from }} className="SongListItem">
 			<li>

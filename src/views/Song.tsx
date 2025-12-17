@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMatch } from '@tanstack/react-location';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -9,7 +10,7 @@ import { useSongs } from '../context/songContext';
 import AddToBookmark from '../icons/AddToBookmark';
 import LinkTo from '../icons/LinkTo';
 
-export default function SongDetails(): JSX.Element {
+export default function SongDetails(): React.ReactElement {
 	const { songCollection, loading } = useSongs();
 	const {
 		params: { songId },

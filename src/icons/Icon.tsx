@@ -1,3 +1,4 @@
+import React from 'react';
 import { HTMLAttributes } from 'react';
 
 export type IconProps = {
@@ -11,7 +12,7 @@ export default function Icon({
 	className,
 	style,
 	children,
-}: IconProps & { children: JSX.Element }): JSX.Element {
+}: IconProps & { children: React.ReactElement }): React.ReactElement {
 	const iconSize = size === 'lg' ? 'icon-lg' : size === 'sm' ? 'icon-sm' : 'icon-md';
 
 	return (
