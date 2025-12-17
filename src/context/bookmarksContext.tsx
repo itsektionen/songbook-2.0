@@ -81,7 +81,7 @@ export function BookmarksProvider({ children }: { children: ReactNode }): JSX.El
 
 	function updateBookmark(
 		bookmarkId: Bookmark['id'],
-		updates: Partial<Omit<Bookmark, 'id'>>
+		updates: Partial<Omit<Bookmark, 'id'>>,
 	): void {
 		if (!bookmarks) return;
 
