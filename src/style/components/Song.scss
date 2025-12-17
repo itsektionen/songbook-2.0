@@ -36,6 +36,9 @@ main.Song {
 	}
 
 	details {
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: rgba(var(--foreground), 0.6);
 		border-bottom: 1px solid rgba(var(--foreground), 0.6);
 		margin-bottom: 0.5rem;
 		padding-block: 0.5rem;
@@ -44,9 +47,6 @@ main.Song {
 			list-style: none;
 			margin: 0.5rem 0 0 0;
 			padding-left: 1rem;
-			font-size: 0.9rem;
-			color: rgba(var(--foreground), 0.6);
-			font-weight: 500;
 		}
 	}
 
