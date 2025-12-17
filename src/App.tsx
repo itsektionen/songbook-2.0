@@ -6,7 +6,7 @@ import { parseBase64Ids } from './util/base64Ids';
 import BookmarksList from './views/BookmarksList';
 import Bookmark from './views/Bookmark';
 
-import '@fontsource/open-sans/variable.css';
+import '@fontsource-variable/open-sans';
 
 const location = new ReactLocation();
 
