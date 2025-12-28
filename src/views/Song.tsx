@@ -55,7 +55,7 @@ export default function SongDetails(): JSX.Element {
 						))}
 					</div>
 
-					{song.notes && song.notes.length > 0 && (
+					{song.notes && (
 						<details open>
 							<summary>Notes about the song</summary>
 							<ul className="notes">
