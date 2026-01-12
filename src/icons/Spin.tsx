@@ -1,6 +1,7 @@
+import React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function Spin(props: IconProps): JSX.Element {
+export default function Spin(props: IconProps): React.ReactElement {
 	return (
 		<Icon {...props}>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em">

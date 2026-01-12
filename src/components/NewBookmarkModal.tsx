@@ -1,10 +1,14 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useBookmarks } from '../context/bookmarksContext';
 import Modal, { ModalButtonGroup, ModalProps } from './Modal';
 
 type NewBookmarkModalProps = Omit<ModalProps, 'children' | 'innerClassName'>;
 
-export default function NewBookmarkModal({ isOpen, onClose }: NewBookmarkModalProps): JSX.Element {
+export default function NewBookmarkModal({
+	isOpen,
+	onClose,
+}: NewBookmarkModalProps): React.ReactElement {
 	const [name, setName] = useState<string>('');
 	const { createBookmark } = useBookmarks();
 

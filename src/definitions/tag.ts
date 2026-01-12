@@ -25,7 +25,7 @@ export const TAGS = <const>[
 	ENG,
 ];
 
-export type Tag = typeof TAGS[number];
+export type Tag = (typeof TAGS)[number];
 
 export const TAG_NAMES = {
 	[GASUQUE]: 'Gasque',

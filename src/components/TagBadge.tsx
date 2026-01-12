@@ -1,3 +1,4 @@
+import React from 'react';
 import { Tag, TAG_NAMES } from '../definitions/tag';
 
 const tagColors: Record<Tag, { foreground: string; background: string; border?: string }> = {
@@ -18,7 +19,7 @@ type TagBadgeProps = {
 	tag: Tag;
 };
 
-export default function TagBadge({ tag }: TagBadgeProps): JSX.Element {
+export default function TagBadge({ tag }: TagBadgeProps): React.ReactElement {
 	const { foreground, background, border } = tagColors[tag];
 	return (
 		<span

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMatch } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 import SongListItem from '../components/SongListItem';
@@ -6,7 +7,7 @@ import { useSearch } from '../context/searchContext';
 import { useSongs } from '../context/songContext';
 import { Song } from '../definitions/songs';
 
-export default function SongList(): JSX.Element {
+export default function SongList(): React.ReactElement {
 	const { data, search: searchParams } = useMatch();
 	const { ids: songIds } = data as { ids?: number[] };
 	const { name } = searchParams as { name?: string };

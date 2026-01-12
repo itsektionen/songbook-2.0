@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useBookmarks } from '../context/bookmarksContext';
 import { Bookmark } from '../definitions/bookmarks';
@@ -13,7 +14,7 @@ export default function AddToBookmarkModal({
 	isOpen,
 	onClose,
 	song,
-}: AddToBookmarkModalProps): JSX.Element {
+}: AddToBookmarkModalProps): React.ReactElement {
 	const { bookmarks, addSongToBookmark, removeSongFromBookmark } = useBookmarks();
 	const [changes, setChanges] = useState<Record<Bookmark['id'], boolean>>({});
 	const [initialValues, setInitialValues] = useState<Record<Bookmark['id'], boolean>>({});

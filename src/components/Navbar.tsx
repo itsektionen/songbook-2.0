@@ -1,3 +1,4 @@
+import React from 'react';
 import Bookmarks from '../icons/Bookmarks';
 import Filter from '../icons/Filter';
 import Left from '../icons/Left';
@@ -9,7 +10,7 @@ import FilterModal from './FilterModal';
 import Search from '../icons/Search';
 import Clear from '../icons/Clear';
 
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.ReactElement {
 	const location = useLocation();
 	const [from, setFrom] = useState<'home' | 'list'>();
 	const { search, setSearch, filter, setFilter } = useSearch();

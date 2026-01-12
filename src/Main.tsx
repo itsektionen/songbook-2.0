@@ -18,5 +18,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 			</SearchProvider>
 		</SongProvider>
 		<ToastContainer autoClose={3000} closeButton newestOnTop position="bottom-right" />
-	</React.StrictMode>
+	</React.StrictMode>,
 );

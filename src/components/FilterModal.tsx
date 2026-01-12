@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { Tag, TAGS } from '../definitions/tag';
 import Modal, { ModalButtonGroup, ModalProps } from './Modal';
@@ -15,7 +16,7 @@ export default function FilterModal({
 	onConfirm,
 	closeOnConfirm = true,
 	startValue = [],
-}: FilterModalProps): JSX.Element {
+}: FilterModalProps): React.ReactElement {
 	const [filter, setFilter] = useState<Tag[]>(startValue);
 
 	useEffect(() => {

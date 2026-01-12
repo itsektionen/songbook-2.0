@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - BookmarksList view
 
+## [0.4.0] - 2025-12-17
+
+### Added
+
+- Song notes dropdown
+- Version update to React 19
+
 ## [0.3.0] - 2025-02-24
 
 ### Added
