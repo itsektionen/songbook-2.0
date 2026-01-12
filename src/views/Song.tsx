@@ -55,6 +55,17 @@ export default function SongDetails(): JSX.Element {
 						))}
 					</div>
 
+					{song.notes && (
+						<details open>
+							<summary>Notes about the song</summary>
+							<ul className="notes">
+								{song.notes.map((note, i) => (
+									<li key={i}>{note}</li>
+								))}
+							</ul>
+						</details>
+					)}
+
 					<div className="song-content">
 						<ReactMarkdown components={{ h1: ({ children }) => <h2>{children}</h2> }}>
 							{song.content || ''}
