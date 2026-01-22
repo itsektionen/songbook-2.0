@@ -1,6 +1,7 @@
+import React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function Clear(props: IconProps): JSX.Element {
+export default function Clear(props: IconProps): React.ReactElement {
 	return (
 		<Icon {...props}>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="1em" height="1em">

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocation, useMatch } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
@@ -7,7 +8,7 @@ import { Bookmark as BookmarkType } from '../definitions/bookmarks';
 import { Song } from '../definitions/songs';
 import Trash from '../icons/Trash';
 
-export default function Bookmark(): JSX.Element {
+export default function Bookmark(): React.ReactElement {
 	const {
 		params: { bookmarkId },
 	} = useMatch();

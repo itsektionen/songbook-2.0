@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation } from '@tanstack/react-location';
 import { Bookmark } from '../definitions/bookmarks';
 import Edit from '../icons/Edit';
@@ -7,7 +8,7 @@ type BookmarkListItemProps = {
 	bookmark: Bookmark;
 };
 
-export default function BookmarkListItem({ bookmark }: BookmarkListItemProps): JSX.Element {
+export default function BookmarkListItem({ bookmark }: BookmarkListItemProps): React.ReactElement {
 	const location = useLocation();
 
 	return (

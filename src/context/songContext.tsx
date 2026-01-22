@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -11,7 +12,7 @@ const SongContext = createContext<{
 
 export const useSongs = () => useContext(SongContext);
 
-export function SongProvider({ children }: { children: ReactNode }): JSX.Element {
+export function SongProvider({ children }: { children: ReactNode }): React.ReactElement {
 	const [songs, setSongs] = useState<Song[]>();
 	const [songCollection, setSongCollection] = useState<SongCollection>();
 	const [loading, setLoading] = useState(true);
