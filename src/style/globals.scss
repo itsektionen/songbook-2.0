@@ -23,6 +23,19 @@
 	--cancel: 222, 66, 58;
 	--reset: 32, 55, 192;
 
+	--bg: #f4f2f7;
+	--surface: #ffffff;
+	--surface-2: #faf9fc;
+	--hair: #e9e5f0;
+	--ink-2: #6b6478;
+	--accent: 122, 91, 208; // #7a5bd0 — RGB triple so rgba(var(--accent), a) works
+	--search-ring: #e4def0;
+
+	--radius: 14px;
+	--radius-sm: 12px;
+	--shadow-soft: 0 1px 3px rgba(40, 30, 55, 0.06);
+	--shadow: 0 1px 2px rgba(40, 30, 55, 0.05), 0 6px 18px -10px rgba(40, 30, 55, 0.18);
+
 	box-sizing: border-box;
 	max-width: 100vw;
 }
@@ -37,7 +50,7 @@ body,
 	margin: 0;
 	padding: 0;
 	color: rgba(var(--foreground), 0.85);
-	background-color: var(--background);
+	background-color: var(--bg);
 	min-height: 100vh;
 	overflow-x: hidden;
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from '@tanstack/react-location';
+import React from 'react';
 import { Song } from '../definitions/songs';
 import TagBadge from './TagBadge';
 
@@ -16,12 +16,9 @@ export default function SongItem({ song, from }: SongItemProps): React.ReactElem
 					<div className="flex-row space-between items-center">
 						<h1>{song.title}</h1>
 						<div className="flex-row gap-sm">
-							{song.tags.map((tag) => (
+							{song.tags.slice(0, 2).map((tag) => (
 								<TagBadge tag={tag} key={tag} />
 							))}
-							{/* {TAGS.map((tag) => (
-								<TagBadge tag={tag} key={tag} />
-							))} */}
 						</div>
 					</div>
 					<p>

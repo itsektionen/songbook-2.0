@@ -1,10 +1,17 @@
 span.TagBadge {
-	padding: 0.05rem 0.5rem;
-	border-radius: 50rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	min-width: 3.5rem;
+	padding: 0.12rem 0.5rem;
+	border-radius: 999px;
 	border-style: solid;
 	border-width: 0.1rem;
-	font-weight: 900;
-	font-size: 0.75rem;
-	vertical-align: baseline;
+	font-weight: 800;
+	font-size: 0.656rem;
+	letter-spacing: 0.055em;
+	line-height: 1.35;
+	white-space: nowrap;
 	user-select: none;
 }

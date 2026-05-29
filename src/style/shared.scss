@@ -64,6 +64,11 @@
 	}
 }
 
+@mixin focus-ring($opacity: 0.35) {
+	border-color: rgb(var(--accent));
+	box-shadow: 0 0 0 3px rgba(var(--accent), $opacity);
+}
+
 @mixin colored-button {
 	position: relative;
 	padding: 0.5rem;

@@ -1,14 +1,13 @@
-import React from 'react';
-import Bookmarks from '../icons/Bookmarks';
-import Filter from '../icons/Filter';
-import Left from '../icons/Left';
-import House from '../icons/House';
 import { Link, useLocation } from '@tanstack/react-location';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearch } from '../context/searchContext';
-import FilterModal from './FilterModal';
-import Search from '../icons/Search';
+import Bookmarks from '../icons/Bookmarks';
 import Clear from '../icons/Clear';
+import Filter from '../icons/Filter';
+import House from '../icons/House';
+import Left from '../icons/Left';
+import Search from '../icons/Search';
+import FilterModal from './FilterModal';
 
 export default function Navbar(): React.ReactElement {
 	const location = useLocation();
@@ -59,49 +58,59 @@ export default function Navbar(): React.ReactElement {
 				<div className="menu">
 					<div className="flex-row items-center">
 						<Link to="/" disabled={location.current.pathname === '/' || from === 'home'}>
-							<button onClick={from === 'home' ? location.history.back : undefined}>
+							<button
+								aria-label="Home"
+								onClick={from === 'home' ? location.history.back : undefined}
+							>
 								<House />
 							</button>
 						</Link>
 
 						{from === 'list' && (
-							<button onClick={location.history.back}>
+							<button aria-label="Go back" onClick={location.history.back}>
 								<Left />
 							</button>
 						)}
 						<h1>Songbook</h1>
 					</div>
 					<div className="flex-row">
-						<button onClick={() => setFilterOpen(true)}>
+						<button aria-label="Filter songs" onClick={() => setFilterOpen(true)}>
 							<Filter />
 						</button>
 						<Link to="/bookmarks">
-							<button>
+							<button aria-label="Bookmarks">
 								<Bookmarks />
 							</button>
 						</Link>
 					</div>
 				</div>
 				<div className="search">
-					<button onClick={() => document.getElementById('searchbar')?.focus()}>
-						<Search size="sm" />
-					</button>
-					<input
-						id="searchbar"
-						value={search}
-						onChange={(e) => setSearch(e.currentTarget.value)}
-						placeholder="Search for title or text"
-					/>
-					{!!search && (
+					<div className="search-field">
 						<button
-							onClick={() => {
-								setSearch('');
-								document.getElementById('searchbar')?.focus();
-							}}
+							aria-label="Search"
+							onClick={() => document.getElementById('searchbar')?.focus()}
 						>
-							<Clear size="sm" />
+							<Search size="sm" />
 						</button>
-					)}
+						<input
+							id="searchbar"
+							aria-label="Search for title or text"
+							value={search}
+							onChange={(e) => setSearch(e.currentTarget.value)}
+							placeholder="Search for title or text"
+						/>
+						{!!search && (
+							<button
+								aria-label="Clear search"
+								onClick={() => {
+									setSearch('');
+									document.getElementById('searchbar')?.focus();
+								}}
+							>
+								<Clear size="sm" />
+							</button>
+						)}
+					</div>
 				</div>
 			</nav>
 			<FilterModal

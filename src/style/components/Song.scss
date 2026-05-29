@@ -26,6 +26,11 @@ main.Song {
 		&:hover {
 			background-color: rgba(var(--foreground), 0.1);
 		}
+
+		&:focus-visible {
+			outline: 2px solid rgb(var(--accent));
+			outline-offset: 1px;
+		}
 	}
 
 	.tag-row {

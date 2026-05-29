@@ -34,10 +34,18 @@ export default function SongDetails(): React.ReactElement {
 					<div className="flex-row space-between items-start">
 						<h1>{song.title}</h1>
 						<div className="flex-row">
-							<button className="action" onClick={writeLinkToClipboard}>
+							<button
+								className="action"
+								aria-label="Copy link to song"
+								onClick={writeLinkToClipboard}
+							>
 								<LinkTo />
 							</button>
-							<button className="action" onClick={() => setAddToBookmarkModalOpen(true)}>
+							<button
+								className="action"
+								aria-label="Add to list"
+								onClick={() => setAddToBookmarkModalOpen(true)}
+							>
 								<AddToBookmark />
 							</button>
 						</div>

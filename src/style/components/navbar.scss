@@ -48,35 +48,68 @@ nav.navbar {
 			&:hover {
 				background-color: rgba(var(--foreground), 0.3);
 			}
+
+			&:focus-visible {
+				outline: 2px solid #fff;
+				outline-offset: -3px;
+			}
 		}
 	}
 
 	div.search {
 		width: 100%;
 		height: $searchbar-height;
-		background-color: rgb(var(--background));
+		padding: 0.5rem 0.875rem;
+		background-color: var(--bg);
 
 		@extend .flex-row;
+		@extend .items-center;
 
-		> button {
-			height: $searchbar-height;
-			width: $searchbar-height;
+		> .search-field {
+			flex: 1;
+			height: 100%;
+			padding: 0 0.35rem;
+			background-color: var(--surface);
+			border: 1px solid var(--search-ring);
+			border-radius: var(--radius-sm);
+			box-shadow: var(--shadow-soft);
+
+			transition:
+				border-color 0.15s ease,
+				box-shadow 0.15s ease;
 
 			@extend .flex-row;
-			@extend .content-center;
 			@extend .items-center;
-		}
 
-		> input {
-			flex: 1;
-			height: $searchbar-height;
-			background-color: rgb(var(--background));
-			border: none;
-			padding: 0.25rem 0;
-			font-size: 1.1rem;
-			vertical-align: baseline;
-			box-sizing: border-box;
-			outline: none;
+			&:focus-within {
+				@include focus-ring(0.25);
+			}
+
+			> button {
+				height: 100%;
+				padding: 0 0.25rem;
+				color: var(--ink-2);
+
+				@extend .flex-row;
+				@extend .content-center;
+				@extend .items-center;
+
+				&:focus-visible {
+					outline: 2px solid rgb(var(--accent));
+					outline-offset: -2px;
+				}
+			}
+
+			> input {
+				flex: 1;
+				min-width: 0;
+				height: 100%;
+				background-color: transparent;
+				border: none;
+				padding: 0 0.25rem;
+				font-size: 1rem;
+				outline: none;
+			}
 		}
 	}
 }
