@@ -11,6 +11,7 @@ const normalize = (s: string) =>
 	s
 		.normalize('NFD')
 		.replace(/\p{Diacritic}/gu, '')
+		.replace(/[^\p{L}\p{N}]/gu, '')
 		.toLowerCase();
 
 export default function SongList(): React.ReactElement {
@@ -53,16 +54,15 @@ export default function SongList(): React.ReactElement {
 
 	useEffect(() => {
 		if (!baseSongs) return;
-		const trimmedSearch = search.trim();
-		if (!trimmedSearch && !filter.length) return setDisplaySongs(baseSongs);
+		const normalizedSearch = normalize(search);
+		if (!normalizedSearch && !filter.length) return setDisplaySongs(baseSongs);
 
 		const tagFiltered = filter.length
 			? baseSongs.filter((song) => filter.every((tag) => song.tags.includes(tag)))
 			: baseSongs;
 
-		if (!trimmedSearch) return setDisplaySongs(tagFiltered);
+		if (!normalizedSearch) return setDisplaySongs(tagFiltered);
 
-		const normalizedSearch = normalize(trimmedSearch);
 		const tagFilteredIds = new Set(tagFiltered.map((s) => s.id));
 
 		const titleSubstringHits = tagFiltered.filter((song) =>
