@@ -1,16 +1,62 @@
-@use '../shared.scss';
+@use '../shared.scss' as *;
 
 .Filter-modal {
 	@extend .flex-col;
 	@extend .gap-sm;
 
-	label {
+	.filter-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+	}
+
+	.filter-chip {
 		@extend .flex-row;
 		@extend .items-center;
+		@extend .space-between;
 
-		font-size: 1rem;
-		> span {
-			margin-left: 0.4rem;
+		gap: 0.4rem;
+		min-height: 2.875rem;
+		padding: 0 0.625rem;
+		border-radius: var(--radius-sm);
+		background-color: var(--surface-2);
+		border: 1.5px solid var(--hair);
+
+		transition:
+			background-color 0.12s ease,
+			border-color 0.12s ease,
+			box-shadow 0.12s ease;
+
+		&:focus-visible {
+			outline: none;
+			@include focus-ring();
+		}
+
+		.tick {
+			flex-shrink: 0;
+			width: 20px;
+			height: 20px;
+			border-radius: 999px;
+			border: 1.5px solid var(--hair);
+			color: #fff;
+
+			@extend .flex-row;
+			@extend .content-center;
+			@extend .items-center;
+
+			transition:
+				background-color 0.12s ease,
+				border-color 0.12s ease;
+		}
+
+		&.on {
+			background-color: color-mix(in srgb, rgb(var(--accent)) 12%, var(--surface));
+			border-color: rgb(var(--accent));
+
+			.tick {
+				background-color: rgb(var(--accent));
+				border-color: rgb(var(--accent));
+			}
 		}
 	}
 }
