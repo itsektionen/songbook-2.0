@@ -1,6 +1,5 @@
-import React from 'react';
 import { useMatch } from '@tanstack/react-location';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
 import AddToBookmarkModal from '../components/AddToBookmarkModal';
@@ -22,7 +21,7 @@ export default function SongDetails(): React.ReactElement {
 		if (song)
 			navigator.clipboard
 				.writeText(`${window.location.origin}/s/${song.id}`)
-				.then(() => toast.success('Copied!'));
+				.then(() => toast.success('Link copied', { autoClose: 1800 }));
 	}
 
 	return (
