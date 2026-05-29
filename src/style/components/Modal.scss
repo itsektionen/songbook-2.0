@@ -48,6 +48,16 @@ div.Modal-outer {
 			button {
 				@include colored-button;
 				padding: 0.5rem 0.75rem;
+
+				&:disabled {
+					cursor: not-allowed;
+				}
+
+				&.primary {
+					color: #fff;
+					background-color: rgb(var(--accent));
+					border-color: rgb(var(--accent));
+				}
 			}
 		}
 	}

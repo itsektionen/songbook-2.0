@@ -50,6 +50,7 @@ export default function FilterModal({
 					Cancel
 				</button>
 				<button
+					disabled={filter.length === 0}
 					onClick={() => {
 						onConfirm?.([]);
 						if (closeOnConfirm) onClose?.();
@@ -59,11 +60,11 @@ export default function FilterModal({
 					Reset
 				</button>
 				<button
+					className="primary"
 					onClick={() => {
 						onConfirm?.(filter);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Confirm
 				</button>
