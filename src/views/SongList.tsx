@@ -14,6 +14,8 @@ const normalize = (s: string) =>
 		.replace(/[^\p{L}\p{N}]/gu, '')
 		.toLowerCase();
 
+const songTitles = (song: Song) => [song.title, ...(song.alternativeTitles ?? [])];
+
 export default function SongList(): React.ReactElement {
 	const { data, search: searchParams } = useMatch();
 	const { ids: songIds } = data as { ids?: number[] };
@@ -29,11 +31,14 @@ export default function SongList(): React.ReactElement {
 
 	const fuse = useMemo(() => {
 		if (!baseSongs) return null;
-		return new Fuse(baseSongs, {
-			keys: ['title'],
-			threshold: 0.4,
+		const titleIndex = baseSongs.map((song) => ({
+			song,
+			titles: songTitles(song).map(normalize),
+		}));
+		return new Fuse(titleIndex, {
+			keys: ['titles'],
+			threshold: 0.35,
 			ignoreLocation: true,
-			getFn: (song) => normalize(song.title),
 		});
 	}, [baseSongs]);
 
@@ -66,11 +71,11 @@ export default function SongList(): React.ReactElement {
 		const tagFilteredIds = new Set(tagFiltered.map((s) => s.id));
 
 		const titleSubstringHits = tagFiltered.filter((song) =>
-			normalize(song.title).includes(normalizedSearch),
+			songTitles(song).some((title) => normalize(title).includes(normalizedSearch)),
 		);
 
 		const titleFuzzyHits = (fuse?.search(normalizedSearch) ?? [])
-			.map((result) => result.item)
+			.map((result) => result.item.song)
 			.filter((song) => tagFilteredIds.has(song.id));
 
 		const contentHits = tagFiltered.filter((song) =>
