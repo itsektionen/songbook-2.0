@@ -9,6 +9,7 @@ import TagBadge from '../components/TagBadge';
 import { useSongs } from '../context/songContext';
 import AddToBookmark from '../icons/AddToBookmark';
 import LinkTo from '../icons/LinkTo';
+import { copyText } from '../util/copyText';
 
 export default function SongDetails(): React.ReactElement {
 	const { songCollection, loading } = useSongs();
@@ -20,9 +21,10 @@ export default function SongDetails(): React.ReactElement {
 
 	function writeLinkToClipboard() {
 		if (song)
-			navigator.clipboard
-				.writeText(`${window.location.origin}/s/${song.id}`)
-				.then(() => toast.success('Copied!'));
+			copyText(`${window.location.origin}/s/${song.id}`).then((copied) => {
+				if (copied) toast.success('Copied!');
+				else toast.info('Long-press and copy the link');
+			});
 	}
 
 	return (
