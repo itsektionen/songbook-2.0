@@ -1,26 +1,23 @@
-// Re-skin react-toastify to match the app's design tokens.
-// react-toastify reads these custom properties at the toast element, so
-// setting them on :root themes every toast regardless of load order.
+// Re-skin react-toastify to match the app's design.
 :root {
 	--toastify-font-family: inherit;
 	--toastify-toast-bd-radius: var(--radius);
 	--toastify-toast-min-height: 3.25rem;
 	--toastify-toast-shadow: var(--shadow);
 
-	--toastify-color-light: var(--surface);
+	--toastify-color-light: rgb(var(--background));
 	--toastify-text-color-light: rgba(var(--foreground), 0.9);
 
-	--toastify-color-success: rgb(var(--accent));
-	--toastify-icon-color-success: rgb(var(--accent));
-	--toastify-color-progress-success: rgb(var(--accent));
+	--toastify-color-success: rgb(var(--confirm));
+	--toastify-icon-color-success: rgb(var(--confirm));
+	--toastify-color-progress-success: rgb(var(--confirm));
 }
 
 .Toastify__toast {
-	border: 1px solid var(--hair);
+	border: 1px solid rgba(var(--primary-dark), 0.15);
 	box-shadow: var(--shadow);
-	font-size: 0.9rem;
+	font-size: 0.875rem;
 	font-weight: 600;
-	letter-spacing: -0.005em;
 }
 
 .Toastify__toast-body {
@@ -38,6 +35,6 @@
 
 .Toastify__close-button {
 	align-self: center;
-	color: var(--ink-2);
+	color: rgba(var(--foreground), 0.6);
 	opacity: 0.7;
 }
