@@ -60,7 +60,7 @@ nav.navbar {
 		width: 100%;
 		height: $searchbar-height;
 		padding: 0.5rem 0.875rem;
-		background-color: var(--bg);
+		background-color: rgb(var(--background));
 
 		@extend .flex-row;
 		@extend .items-center;
@@ -69,8 +69,8 @@ nav.navbar {
 			flex: 1;
 			height: 100%;
 			padding: 0 0.35rem;
-			background-color: var(--surface);
-			border: 1px solid var(--search-ring);
+			background-color: rgb(var(--background));
+			border: 1px solid rgba(var(--primary-dark), 0.15);
 			border-radius: var(--radius-sm);
 			box-shadow: var(--shadow-soft);
 
@@ -88,14 +88,14 @@ nav.navbar {
 			> button {
 				height: 100%;
 				padding: 0 0.25rem;
-				color: var(--ink-2);
+				color: rgba(var(--foreground), 0.6);
 
 				@extend .flex-row;
 				@extend .content-center;
 				@extend .items-center;
 
 				&:focus-visible {
-					outline: 2px solid rgb(var(--accent));
+					outline: 2px solid rgb(var(--primary-dark));
 					outline-offset: -2px;
 				}
 			}

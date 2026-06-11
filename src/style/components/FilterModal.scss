@@ -19,8 +19,8 @@
 		min-height: 2.875rem;
 		padding: 0 0.625rem;
 		border-radius: var(--radius-sm);
-		background-color: var(--surface-2);
-		border: 1.5px solid var(--hair);
+		background-color: rgb(var(--background));
+		border: 1.5px solid rgba(var(--primary-dark), 0.15);
 
 		transition:
 			background-color 0.12s ease,
@@ -37,8 +37,8 @@
 			width: 20px;
 			height: 20px;
 			border-radius: 999px;
-			border: 1.5px solid var(--hair);
-			color: #fff;
+			border: 1.5px solid rgba(var(--primary-dark), 0.15);
+			color: rgb(var(--primary-dark));
 
 			@extend .flex-row;
 			@extend .content-center;
@@ -50,12 +50,12 @@
 		}
 
 		&.on {
-			background-color: color-mix(in srgb, rgb(var(--accent)) 12%, var(--surface));
-			border-color: rgb(var(--accent));
+			background-color: rgba(var(--primary), 0.15);
+			border-color: rgb(var(--primary));
 
 			.tick {
-				background-color: rgb(var(--accent));
-				border-color: rgb(var(--accent));
+				background-color: rgb(var(--primary));
+				border-color: rgb(var(--primary));
 			}
 		}
 	}

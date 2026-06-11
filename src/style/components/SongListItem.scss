@@ -4,8 +4,8 @@
 	display: block;
 
 	> li > div {
-		background-color: var(--surface);
-		border: 1px solid var(--hair);
+		background-color: rgb(var(--background));
+		border: 1px solid rgba(var(--primary-dark), 0.15);
 		border-radius: var(--radius);
 		box-shadow: var(--shadow-soft);
 		padding: 0.8125rem 0.9375rem;
@@ -17,7 +17,7 @@
 
 		h1 {
 			margin: 0;
-			font-size: 1.031rem;
+			font-size: 1rem;
 			font-weight: 700;
 			line-height: 1.2;
 		}
@@ -25,7 +25,7 @@
 		p {
 			margin: 0.2rem 0 0 0;
 			font-size: 0.875rem;
-			color: var(--ink-2);
+			color: rgba(var(--foreground), 0.6);
 			white-space: nowrap;
 			overflow-x: hidden;
 			text-overflow: ellipsis;
