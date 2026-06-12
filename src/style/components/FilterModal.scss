@@ -16,16 +16,16 @@
 		@extend .space-between;
 
 		gap: 0.4rem;
-		min-height: 2.875rem;
+		min-height: 3rem;
 		padding: 0 0.625rem;
 		border-radius: var(--radius-sm);
 		background-color: rgb(var(--background));
-		border: 1.5px solid rgba(var(--primary-dark), 0.15);
+		border: 1px solid rgba(var(--primary-dark), 0.15);
 
 		transition:
-			background-color 0.12s ease,
-			border-color 0.12s ease,
-			box-shadow 0.12s ease;
+			background-color 0.15s ease,
+			border-color 0.15s ease,
+			box-shadow 0.15s ease;
 
 		&:focus-visible {
 			outline: none;
@@ -37,7 +37,7 @@
 			width: 20px;
 			height: 20px;
 			border-radius: 999px;
-			border: 1.5px solid rgba(var(--primary-dark), 0.15);
+			border: 1px solid rgba(var(--primary-dark), 0.15);
 			color: rgb(var(--primary-dark));
 
 			@extend .flex-row;
@@ -45,8 +45,8 @@
 			@extend .items-center;
 
 			transition:
-				background-color 0.12s ease,
-				border-color 0.12s ease;
+				background-color 0.15s ease,
+				border-color 0.15s ease;
 		}
 
 		&.on {

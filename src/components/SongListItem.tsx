@@ -16,7 +16,7 @@ export default function SongItem({ song, from }: SongItemProps): React.ReactElem
 					<div className="flex-row space-between items-center">
 						<h1>{song.title}</h1>
 						<div className="flex-row gap-sm">
-							{song.tags.slice(0, 2).map((tag) => (
+							{song.tags.map((tag) => (
 								<TagBadge tag={tag} key={tag} />
 							))}
 						</div>

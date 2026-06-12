@@ -21,7 +21,7 @@ export default function SongDetails(): React.ReactElement {
 		if (song)
 			navigator.clipboard
 				.writeText(`${window.location.origin}/s/${song.id}`)
-				.then(() => toast.success('Link copied', { autoClose: 1800 }));
+				.then(() => toast.success('Link copied'));
 	}
 
 	return (

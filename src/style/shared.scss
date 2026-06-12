@@ -94,6 +94,11 @@
 	&:hover::before {
 		opacity: 0.2;
 	}
+
+	&:focus-visible {
+		outline: none;
+		@include focus-ring();
+	}
 }
 
 .list-item {
