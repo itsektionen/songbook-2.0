@@ -58,24 +58,25 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 	const playerPromise = useRef<Promise<Player> | null>(null);
 	const startRef = useRef({ offset: 0, time: 0 });
 	const tickTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+	const isMounted = useRef(true);
 
 	function loadPlayer(): Promise<Player> {
 		if (!playerPromise.current) {
 			playerPromise.current = createPlayer(abc).then((player) => {
 				playerRef.current = player;
-				setDuration(player.duration);
+				if (isMounted.current) setDuration(player.duration);
 				return player;
 			});
-			// Allow a retry from the play button if the eager load failed.
 			playerPromise.current.catch(() => (playerPromise.current = null));
 		}
 		return playerPromise.current;
 	}
 
 	useEffect(() => {
-		// Load eagerly so the duration is known up front; errors surface on play instead.
+		isMounted.current = true;
 		loadPlayer().catch(() => {});
 		return () => {
+			isMounted.current = false;
 			clearTickTimer();
 			playerRef.current?.stop();
 		};
@@ -95,8 +96,6 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 		setState('idle');
 	}
 
-	// The clock is computed from a start timestamp instead of incremented, so the
-	// slider stays in sync with the audio even if the tab throttles the interval.
 	function startClock(offset: number) {
 		startRef.current = { offset, time: performance.now() };
 		clearTickTimer();
@@ -114,10 +113,12 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 			const player = await loadPlayer();
 			if (progress > 0) player.seek(progress);
 			await player.play();
+			if (!isMounted.current) return;
 			setDuration(player.duration);
 			setState('playing');
 			startClock(progress);
 		} catch {
+			if (!isMounted.current) return;
 			toast.error('Could not play the melody');
 			setState('idle');
 		}
