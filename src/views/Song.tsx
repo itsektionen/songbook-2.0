@@ -1,9 +1,9 @@
-import React from 'react';
 import { useMatch } from '@tanstack/react-location';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
 import AddToBookmarkModal from '../components/AddToBookmarkModal';
+import MelodyPlayer from '../components/MelodyPlayer';
 import Spinner from '../components/Spinner';
 import TagBadge from '../components/TagBadge';
 import { useSongs } from '../context/songContext';
@@ -22,7 +22,7 @@ export default function SongDetails(): React.ReactElement {
 		if (song)
 			navigator.clipboard
 				.writeText(`${window.location.origin}/s/${song.id}`)
-				.then(() => toast.success('Copied!'));
+				.then(() => toast.success('Link copied'));
 	}
 
 	return (
@@ -34,10 +34,18 @@ export default function SongDetails(): React.ReactElement {
 					<div className="flex-row space-between items-start">
 						<h1>{song.title}</h1>
 						<div className="flex-row">
-							<button className="action" onClick={writeLinkToClipboard}>
+							<button
+								className="action"
+								aria-label="Copy link to song"
+								onClick={writeLinkToClipboard}
+							>
 								<LinkTo />
 							</button>
-							<button className="action" onClick={() => setAddToBookmarkModalOpen(true)}>
+							<button
+								className="action"
+								aria-label="Add to list"
+								onClick={() => setAddToBookmarkModalOpen(true)}
+							>
 								<AddToBookmark />
 							</button>
 						</div>
@@ -49,6 +57,7 @@ export default function SongDetails(): React.ReactElement {
 								Melody: {song.melody} {song.composer && `(${song.composer})`}
 							</h3>
 						)}
+						{song.abc && <MelodyPlayer key={song.id} abc={song.abc} />}
 					</div>
 					<div className="tag-row">
 						{song.tags.map((tag) => (
