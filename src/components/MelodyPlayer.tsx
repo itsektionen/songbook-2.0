@@ -132,7 +132,7 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 
 	const isPlaying = state === 'playing';
 	const icon = {
-		loading: <Spin className="Spinner" size="sm" />,
+		loading: <Spin className="loading-spinner" size="sm" />,
 		playing: <Stop size="sm" />,
 		idle: <TrebleClef size="lg" />,
 	}[state];

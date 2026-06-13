@@ -32,8 +32,9 @@
 			cursor: default;
 		}
 
-		.Spinner {
+		.loading-spinner {
 			display: inline-block;
+			animation: rotate 1.5s infinite linear;
 		}
 	}
 
