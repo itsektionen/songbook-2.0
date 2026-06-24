@@ -34,7 +34,7 @@ export default function ShareBookmarkQrModal({
 		if (!isOpen || !qrContainerRef.current) return;
 
 		const foreground = toRgb('--primary-dark', '0, 0, 0');
-		const background = toRgb('--background', '255, 0, 255');
+		const background = toRgb('--background', '255, 255, 255');
 
 		if (!qrCodeRef.current) {
 			qrCodeRef.current = new QRCodeStyling({
@@ -129,9 +129,8 @@ export default function ShareBookmarkQrModal({
 				role="button"
 				tabIndex={0}
 			>
-				{isFullscreen ? 'Exit fullscreen' : 'Show fullscreen QR'}
+				Show fullscreen QR
 			</p>
-			<p className="hint">Click the QR image to toggle fullscreen</p>
 		</Modal>
 	);
 }

@@ -1,3 +1,10 @@
+/**
+ * Helper method to copy text on different browsers and devices. Fallbacks to an
+ * off-screen textArea if clipboard API is not available and finally a prompt
+ * with the URL.
+ *
+ * @param text the text to copy
+ */
 export async function copyText(text: string): Promise<boolean> {
 	if (navigator.clipboard?.writeText && window.isSecureContext) {
 		await navigator.clipboard.writeText(text);
@@ -16,7 +23,7 @@ export async function copyText(text: string): Promise<boolean> {
 	textArea.select();
 	textArea.setSelectionRange(0, text.length);
 
-	let copied = false;
+	let copied: boolean;
 	try {
 		copied = document.execCommand('copy');
 	} catch {

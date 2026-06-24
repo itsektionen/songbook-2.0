@@ -2,7 +2,6 @@ import { useMatch } from '@tanstack/react-location';
 import Fuse from 'fuse.js';
 import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import Actions from '../components/Actions';
 import ListShareActions from '../components/ListShareActions';
 import SongListItem from '../components/SongListItem';
 import Spinner from '../components/Spinner';
@@ -141,9 +140,9 @@ export default function SongList(): React.ReactElement {
 				<div className="top-row">
 					<h1>{listName}</h1>
 					{localListAlreadySaved ? (
-						<Actions>
+						<div className="ListActions">
 							<ListShareActions name={listName} songIds={songIds ?? []} />
-						</Actions>
+						</div>
 					) : (
 						<button
 							className="save-button"

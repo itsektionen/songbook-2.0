@@ -23,7 +23,6 @@ export default function SongDetails(): React.ReactElement {
 		if (song)
 			copyText(`${window.location.origin}/s/${song.id}`).then((copied) => {
 				if (copied) toast.success('Copied!');
-				else toast.info('Long-press and copy the link');
 			});
 	}
 

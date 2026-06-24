@@ -36,7 +36,6 @@ export default function ListShareActions({
 					event.preventDefault();
 					copyText(shareUrl).then((copied) => {
 						if (copied) toast.success('Copied!');
-						else toast.info('Long-press and copy the link');
 					});
 				}}
 			>
