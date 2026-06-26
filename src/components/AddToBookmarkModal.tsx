@@ -27,7 +27,8 @@ export default function AddToBookmarkModal({
 			initialBookmarks[bookmark.id] = bookmark.songs.includes(song.id);
 		});
 		setInitialValues(initialBookmarks);
-	}, [bookmarks]);
+		setChanges({});
+	}, [bookmarks, song.id]);
 
 	function onSave(): void {
 		Object.entries(changes).map(([bookmarkId, value]) => {
@@ -48,17 +49,21 @@ export default function AddToBookmarkModal({
 						<label key={bookmark.id}>
 							<input
 								type="checkbox"
-								checked={changes[bookmark.id] ?? initialValues[bookmark.id]}
-								onChange={() => {
-									if (changes[bookmark.id] !== undefined) {
-										const { [bookmark.id]: _removed, ...remainder } = changes;
-										setChanges(remainder);
-									} else {
-										setChanges({
-											...changes,
-											[bookmark.id]: (changes[bookmark.id] = !initialValues[bookmark.id]),
-										});
-									}
+								checked={changes[bookmark.id] ?? initialValues[bookmark.id] ?? false}
+								onChange={(event) => {
+									const checked = event.target.checked;
+
+									setChanges((previousChanges) => {
+										if (checked === initialValues[bookmark.id]) {
+											const { [bookmark.id]: _removed, ...remainder } = previousChanges;
+											return remainder;
+										}
+
+										return {
+											...previousChanges,
+											[bookmark.id]: checked,
+										};
+									});
 								}}
 							/>
 							<span>{bookmark.name}</span>

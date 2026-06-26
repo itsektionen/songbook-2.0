@@ -18,18 +18,14 @@ export default function Modal({
 		<div
 			className={`Modal-outer${isOpen ? ' visible' : ''}`}
 			onClick={(event) => {
-				event.preventDefault();
 				event.stopPropagation();
-				onClose?.();
+				if (event.target === event.currentTarget) onClose?.();
 			}}
 		>
 			{isOpen && (
 				<div
 					className={`Modal-inner ${innerClassName}`}
-					onClick={(event) => {
-						event.preventDefault();
-						event.stopPropagation();
-					}}
+					onClick={(event) => event.stopPropagation()}
 				>
 					{children}
 				</div>
