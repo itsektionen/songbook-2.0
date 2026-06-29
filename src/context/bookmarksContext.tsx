@@ -9,7 +9,7 @@ const LS_BOOKMARKS_KEY = 'in-songbook:bookmarks';
 const BookmarksContext = createContext<{
 	bookmarks?: Record<Bookmark['id'], Bookmark>;
 	setBookmarks: (value: Record<Bookmark['id'], Bookmark>) => void;
-	createBookmark: (name: string, song?: Song['id']) => void;
+	createBookmark: (name: string, songs?: Song['id'][]) => void;
 	deleteBookmark: (bookmarkId: Bookmark['id']) => void;
 	addSongToBookmark: (bookmarkId: Bookmark['id'], songId: Song['id']) => void;
 	removeSongFromBookmark: (bookmarkId: Bookmark['id'], songId: Song['id']) => void;
@@ -46,9 +46,9 @@ export function BookmarksProvider({ children }: { children: ReactNode }): React.
 		localStorage.setItem(LS_BOOKMARKS_KEY, JSON.stringify(value));
 	}
 
-	function createBookmark(name: string, song?: Song['id']): void {
+	function createBookmark(name: string, songs: Song['id'][] = []): void {
 		const bookmark = newBookmark(name);
-		if (song) bookmark.songs = [song];
+		bookmark.songs = songs;
 		updateBookmarks({ ...bookmarks, [bookmark.id]: bookmark });
 	}
 

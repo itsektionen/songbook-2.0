@@ -1,8 +1,11 @@
 import { useMatch } from '@tanstack/react-location';
 import Fuse from 'fuse.js';
 import React, { useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
+import ListShareActions from '../components/ListShareActions';
 import SongListItem from '../components/SongListItem';
 import Spinner from '../components/Spinner';
+import { useBookmarks } from '../context/bookmarksContext';
 import { useSearch } from '../context/searchContext';
 import { useSongs } from '../context/songContext';
 import { Song } from '../definitions/songs';
@@ -21,6 +24,7 @@ export default function SongList(): React.ReactElement {
 	const { ids: songIds } = data as { ids?: number[] };
 	const { name } = searchParams as { name?: string };
 	const { songs, songCollection, loading: loadingSongs } = useSongs();
+	const { bookmarks, createBookmark } = useBookmarks();
 	const { search, filter } = useSearch();
 
 	const [baseSongs, setBaseSongs] = useState<Song[]>();
@@ -28,6 +32,17 @@ export default function SongList(): React.ReactElement {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	const isFilteredList = !!songIds;
+	const listName = name || 'Imported list';
+	const localListAlreadySaved = !!(
+		isFilteredList &&
+		bookmarks &&
+		Object.values(bookmarks).find(
+			(bookmark) =>
+				bookmark.name === listName &&
+				bookmark.songs.length === (songIds?.length ?? 0) &&
+				bookmark.songs.every((songId, index) => songId === songIds?.[index]),
+		)
+	);
 
 	const fuse = useMemo(() => {
 		if (!baseSongs) return null;
@@ -112,9 +127,34 @@ export default function SongList(): React.ReactElement {
 		return 'Something went wrong :/';
 	}
 
+	function saveImportedList() {
+		if (!isFilteredList || !songIds || localListAlreadySaved) return;
+
+		createBookmark(listName, songIds);
+		toast.success('List saved');
+	}
+
 	return (
 		<main className="SongList">
-			{isFilteredList && name && <h1>{name}</h1>}
+			{isFilteredList && (
+				<div className="top-row">
+					<h1>{listName}</h1>
+					{localListAlreadySaved ? (
+						<div className="ListActions">
+							<ListShareActions name={listName} songIds={songIds ?? []} />
+						</div>
+					) : (
+						<button
+							className="save-button"
+							onClick={saveImportedList}
+							disabled={!bookmarks}
+							style={{ color: 'rgb(var(--confirm))' }}
+						>
+							Save
+						</button>
+					)}
+				</div>
+			)}
 			{loading ? (
 				<Spinner />
 			) : displaySongs?.length ? (

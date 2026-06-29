@@ -1,0 +1,80 @@
+@use '../shared.scss' as *;
+
+.ShareBookmarkQrModal {
+	@extend .flex-col;
+	@extend .items-center;
+
+	h1 {
+		margin: 0;
+		font-size: 1.4rem;
+	}
+
+	h2 {
+		margin: 0.4rem 0 0.9rem;
+		font-size: 1rem;
+		font-weight: 600;
+		opacity: 0.8;
+	}
+
+	.qr-wrapper {
+		width: 100%;
+		@extend .flex-row;
+		@extend .content-center;
+		cursor: zoom-in;
+
+		&:fullscreen {
+			width: 100vw;
+			height: 100vh;
+			background-color: rgb(var(--background));
+			padding: 1.5rem;
+			@extend .flex-col;
+			@extend .content-center;
+			align-items: center;
+		}
+
+		&:fullscreen .qr-code {
+			width: min(calc(100vh - 10rem), calc(100vw - 10rem));
+			height: min(calc(100vh - 10rem), calc(100vw - 10rem));
+			padding: 0;
+			border-width: 2px;
+		}
+
+		&:fullscreen .qr-code > svg,
+		&:fullscreen .qr-code > canvas {
+			width: 100% !important;
+			height: 100% !important;
+			display: block;
+		}
+	}
+
+	.qr-code {
+		background-color: rgb(var(--background));
+		border: 1px solid rgba(var(--foreground), 0.2);
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+		line-height: 0;
+	}
+
+	.qr-url {
+		width: 100%;
+		margin: 0.9rem 0 0;
+		font-size: 0.85rem;
+		text-align: center;
+		word-break: break-all;
+		opacity: 0.75;
+	}
+
+	.fullscreen-action {
+		margin: 0.8rem 0 0;
+		color: rgb(var(--confirm));
+		text-decoration: underline;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.hint {
+		margin: 0.25rem 0 0;
+		font-size: 0.8rem;
+		opacity: 0.7;
+	}
+}
