@@ -2,9 +2,4 @@
 
 .BookmarkListItem {
 	@extend .list-item;
-
-	.actions {
-		@extend .flex-row;
-		@extend .gap-sm;
-	}
 }

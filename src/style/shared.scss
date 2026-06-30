@@ -64,10 +64,15 @@
 	}
 }
 
+@mixin focus-ring($opacity: 0.35) {
+	border-color: rgb(var(--primary-dark));
+	box-shadow: 0 0 0 3px rgba(var(--primary), $opacity);
+}
+
 @mixin colored-button {
 	position: relative;
 	padding: 0.5rem;
-	border-radius: 0.4rem;
+	border-radius: var(--radius-sm);
 	border: 0.1rem solid currentColor;
 
 	font-weight: 600;
@@ -83,11 +88,16 @@
 		opacity: 0.05;
 		transition: opacity 0.1s ease-in;
 
-		border-radius: 0.4rem;
+		border-radius: var(--radius-sm);
 	}
 
 	&:hover::before {
 		opacity: 0.2;
+	}
+
+	&:focus-visible {
+		outline: none;
+		@include focus-ring();
 	}
 }
 

@@ -76,7 +76,7 @@ export default function AddToBookmarkModal({
 				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Close
 				</button>
-				<button onClick={onSave} style={{ color: 'rgb(var(--confirm))' }}>
+				<button className="primary" onClick={onSave}>
 					Save
 				</button>
 			</ModalButtonGroup>

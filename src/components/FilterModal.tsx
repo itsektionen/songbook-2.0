@@ -1,6 +1,6 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tag, TAGS } from '../definitions/tag';
+import Check from '../icons/Check';
 import Modal, { ModalButtonGroup, ModalProps } from './Modal';
 import TagBadge from './TagBadge';
 
@@ -25,26 +25,32 @@ export default function FilterModal({
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} innerClassName="Filter-modal">
-			<div className="flex-col gap-sm">
-				{TAGS.map((tag) => (
-					<label key={tag}>
-						<input
-							type="checkbox"
-							checked={filter.includes(tag)}
-							onChange={() => {
-								if (!filter.includes(tag)) setFilter([...filter, tag]);
+			<div className="filter-grid">
+				{TAGS.map((tag) => {
+					const on = filter.includes(tag);
+					return (
+						<button
+							type="button"
+							key={tag}
+							className={`filter-chip${on ? ' on' : ''}`}
+							aria-pressed={on}
+							onClick={() => {
+								if (!on) setFilter([...filter, tag]);
 								else setFilter(filter.filter((f) => f !== tag));
 							}}
-						/>
-						<TagBadge tag={tag} />
-					</label>
-				))}
+						>
+							<TagBadge tag={tag} />
+							<span className="tick">{on && <Check size="sm" />}</span>
+						</button>
+					);
+				})}
 			</div>
 			<ModalButtonGroup>
 				<button onClick={onClose} style={{ color: 'rgb(var(--cancel))' }}>
 					Cancel
 				</button>
 				<button
+					disabled={filter.length === 0}
 					onClick={() => {
 						onConfirm?.([]);
 						if (closeOnConfirm) onClose?.();
@@ -54,11 +60,11 @@ export default function FilterModal({
 					Reset
 				</button>
 				<button
+					className="primary"
 					onClick={() => {
 						onConfirm?.(filter);
 						if (closeOnConfirm) onClose?.();
 					}}
-					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Confirm
 				</button>
