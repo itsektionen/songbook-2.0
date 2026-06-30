@@ -1,17 +1,30 @@
-import React from 'react';
 import { useMatch } from '@tanstack/react-location';
-import { useEffect, useState } from 'react';
+import Fuse from 'fuse.js';
+import React, { useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
+import ListShareActions from '../components/ListShareActions';
 import SongListItem from '../components/SongListItem';
 import Spinner from '../components/Spinner';
+import { useBookmarks } from '../context/bookmarksContext';
 import { useSearch } from '../context/searchContext';
 import { useSongs } from '../context/songContext';
 import { Song } from '../definitions/songs';
+
+const normalize = (s: string) =>
+	s
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '')
+		.replace(/[^\p{L}\p{N}]/gu, '')
+		.toLowerCase();
+
+const songTitles = (song: Song) => [song.title, ...(song.alternativeTitles ?? [])];
 
 export default function SongList(): React.ReactElement {
 	const { data, search: searchParams } = useMatch();
 	const { ids: songIds } = data as { ids?: number[] };
 	const { name } = searchParams as { name?: string };
 	const { songs, songCollection, loading: loadingSongs } = useSongs();
+	const { bookmarks, createBookmark } = useBookmarks();
 	const { search, filter } = useSearch();
 
 	const [baseSongs, setBaseSongs] = useState<Song[]>();
@@ -19,6 +32,30 @@ export default function SongList(): React.ReactElement {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	const isFilteredList = !!songIds;
+	const listName = name || 'Imported list';
+	const localListAlreadySaved = !!(
+		isFilteredList &&
+		bookmarks &&
+		Object.values(bookmarks).find(
+			(bookmark) =>
+				bookmark.name === listName &&
+				bookmark.songs.length === (songIds?.length ?? 0) &&
+				bookmark.songs.every((songId, index) => songId === songIds?.[index]),
+		)
+	);
+
+	const fuse = useMemo(() => {
+		if (!baseSongs) return null;
+		const titleIndex = baseSongs.map((song) => ({
+			song,
+			titles: songTitles(song).map(normalize),
+		}));
+		return new Fuse(titleIndex, {
+			keys: ['titles'],
+			threshold: 0.35,
+			ignoreLocation: true,
+		});
+	}, [baseSongs]);
 
 	useEffect(() => {
 		if (!songs) return;
@@ -36,20 +73,41 @@ export default function SongList(): React.ReactElement {
 	}, [songs, songCollection, songIds]);
 
 	useEffect(() => {
-		if (!search && !filter.length) return setDisplaySongs(baseSongs);
+		if (!baseSongs) return;
+		const normalizedSearch = normalize(search);
+		if (!normalizedSearch && !filter.length) return setDisplaySongs(baseSongs);
 
-		const normalizedSearch = search.normalize('NFD').toLowerCase();
-		const filteredSongs: Song[] = [];
-		baseSongs?.forEach((song) => {
-			if (filter.length && !filter.every((tag) => song.tags.includes(tag))) return;
-			if (song.title.normalize('NFD').toLowerCase().includes(normalizedSearch))
-				return filteredSongs.push(song);
-			if (song.content.normalize('NFD').toLowerCase().includes(normalizedSearch))
-				return filteredSongs.push(song);
-		});
+		const tagFiltered = filter.length
+			? baseSongs.filter((song) => filter.every((tag) => song.tags.includes(tag)))
+			: baseSongs;
 
-		setDisplaySongs(filteredSongs);
-	}, [baseSongs, search, filter]);
+		if (!normalizedSearch) return setDisplaySongs(tagFiltered);
+
+		const tagFilteredIds = new Set(tagFiltered.map((s) => s.id));
+
+		const titleSubstringHits = tagFiltered.filter((song) =>
+			songTitles(song).some((title) => normalize(title).includes(normalizedSearch)),
+		);
+
+		const titleFuzzyHits = (fuse?.search(normalizedSearch) ?? [])
+			.map((result) => result.item.song)
+			.filter((song) => tagFilteredIds.has(song.id));
+
+		const contentHits = tagFiltered.filter((song) =>
+			normalize(song.content).includes(normalizedSearch),
+		);
+
+		const seen = new Set<number>();
+		const merged: Song[] = [];
+		for (const song of [...titleSubstringHits, ...titleFuzzyHits, ...contentHits]) {
+			if (!seen.has(song.id)) {
+				seen.add(song.id);
+				merged.push(song);
+			}
+		}
+
+		setDisplaySongs(merged);
+	}, [baseSongs, fuse, search, filter]);
 
 	useEffect(() => {
 		setLoading(loadingSongs || !songs || !baseSongs || !displaySongs);
@@ -69,9 +127,34 @@ export default function SongList(): React.ReactElement {
 		return 'Something went wrong :/';
 	}
 
+	function saveImportedList() {
+		if (!isFilteredList || !songIds || localListAlreadySaved) return;
+
+		createBookmark(listName, songIds);
+		toast.success('List saved');
+	}
+
 	return (
 		<main className="SongList">
-			{isFilteredList && name && <h1>{name}</h1>}
+			{isFilteredList && (
+				<div className="top-row">
+					<h1>{listName}</h1>
+					{localListAlreadySaved ? (
+						<div className="ListActions">
+							<ListShareActions name={listName} songIds={songIds ?? []} />
+						</div>
+					) : (
+						<button
+							className="save-button"
+							onClick={saveImportedList}
+							disabled={!bookmarks}
+							style={{ color: 'rgb(var(--confirm))' }}
+						>
+							Save
+						</button>
+					)}
+				</div>
+			)}
 			{loading ? (
 				<Spinner />
 			) : displaySongs?.length ? (

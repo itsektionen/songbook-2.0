@@ -3,6 +3,7 @@ import { Tag } from './tag';
 export type Song = {
 	id: number;
 	title: string;
+	alternativeTitles?: string[];
 	author?: string;
 	melody?: string;
 	composer?: string;

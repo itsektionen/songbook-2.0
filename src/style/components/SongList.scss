@@ -1,7 +1,23 @@
 @use '../variables.scss' as *;
+@use '../shared.scss' as *;
 
 main.SongList {
 	padding: 0;
+
+	.top-row {
+		margin: 0 $main-std-padding;
+
+		@extend .flex-row;
+		@extend .items-center;
+		@extend .space-between;
+		@extend .gap-md;
+
+		.save-button {
+			@include colored-button;
+			padding: 0.45rem 0.75rem;
+			flex-shrink: 0;
+		}
+	}
 
 	ul {
 		list-style: none;
