@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from '@tanstack/react-location';
+import React from 'react';
 import { Song } from '../definitions/songs';
 import TagBadge from './TagBadge';
 
@@ -19,9 +19,6 @@ export default function SongItem({ song, from }: SongItemProps): React.ReactElem
 							{song.tags.map((tag) => (
 								<TagBadge tag={tag} key={tag} />
 							))}
-							{/* {TAGS.map((tag) => (
-								<TagBadge tag={tag} key={tag} />
-							))} */}
 						</div>
 					</div>
 					<p>

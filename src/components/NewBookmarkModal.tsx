@@ -32,11 +32,11 @@ export default function NewBookmarkModal({
 					Cancel
 				</button>
 				<button
+					className="primary"
 					onClick={() => {
 						createBookmark(name);
 						onClose?.();
 					}}
-					style={{ color: 'rgb(var(--confirm))' }}
 				>
 					Create
 				</button>

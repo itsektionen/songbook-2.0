@@ -2,7 +2,7 @@
 @use '../shared.scss' as *;
 
 main.SongList {
-	padding: $main-list-padding;
+	padding: 0;
 
 	.top-row {
 		margin: 0 $main-std-padding;
@@ -22,7 +22,11 @@ main.SongList {
 	ul {
 		list-style: none;
 		margin: 0;
-		padding: 0;
+		padding: 0.5rem 0.875rem 1.75rem;
+
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 
 	.no-songs {

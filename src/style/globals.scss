@@ -23,6 +23,12 @@
 	--cancel: 222, 66, 58;
 	--reset: 32, 55, 192;
 
+	--radius: 14px;
+	--radius-sm: 12px;
+	--shadow-soft: 0 1px 3px rgba(var(--primary-dark), 0.06);
+	--shadow:
+		0 1px 2px rgba(var(--primary-dark), 0.05), 0 6px 18px -10px rgba(var(--primary-dark), 0.18);
+
 	box-sizing: border-box;
 	max-width: 100vw;
 }

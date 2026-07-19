@@ -32,7 +32,7 @@ div.Modal-outer {
 
 	> div.Modal-inner {
 		background-color: rgb(var(--background));
-		border-radius: 0.25rem;
+		border-radius: var(--radius);
 		width: 100%;
 		max-width: 40rem;
 		max-height: 100%;
@@ -48,6 +48,16 @@ div.Modal-outer {
 			button {
 				@include colored-button;
 				padding: 0.5rem 0.75rem;
+
+				&:disabled {
+					cursor: not-allowed;
+				}
+
+				&.primary {
+					color: rgb(var(--primary-dark));
+					background-color: rgb(var(--primary));
+					border-color: rgb(var(--primary));
+				}
 			}
 		}
 	}

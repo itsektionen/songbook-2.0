@@ -15,7 +15,7 @@ main.Bookmark {
 			font-size: 1.5rem;
 			font-weight: 600;
 			border: 0.1rem solid rgba(var(--foreground), 0.1);
-			border-radius: 0.4rem;
+			border-radius: var(--radius-sm);
 			padding: 0.3rem;
 			flex: 1;
 		}
