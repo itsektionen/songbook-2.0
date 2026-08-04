@@ -3,6 +3,7 @@ import axios from 'axios';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Song, SongCollection, SongsWithMeta, SONGS_JSON_URL } from '../definitions/songs';
+import { isTag } from '../definitions/tag';
 
 const SongContext = createContext<{
 	songs?: Song[];
@@ -29,8 +30,9 @@ export function SongProvider({ children }: { children: ReactNode }): React.React
 		axios
 			.get<SongsWithMeta>(SONGS_JSON_URL)
 			.then(({ data }) => {
-				setSongs(data.songs);
-				setSongCollection(generateSongCollection(data.songs));
+				const songs = sanitizeSongs(data.songs);
+				setSongs(songs);
+				setSongCollection(generateSongCollection(songs));
 				if (window.navigator.onLine === false)
 					toast.warn("You're offline! Using last known songlist");
 			})
@@ -45,6 +47,12 @@ export function SongProvider({ children }: { children: ReactNode }): React.React
 			{children}
 		</SongContext.Provider>
 	);
+}
+
+// The songlist can gain tags before this app knows them.
+// Instead of crashing we filter them out.
+function sanitizeSongs(songs: Song[]): Song[] {
+	return songs.map((song) => ({ ...song, tags: song.tags.filter(isTag) }));
 }
 
 function generateSongCollection(songs?: Song[]): SongCollection | undefined {

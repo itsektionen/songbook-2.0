@@ -27,6 +27,10 @@ export const TAGS = <const>[
 
 export type Tag = (typeof TAGS)[number];
 
+export function isTag(tag: string): tag is Tag {
+	return (TAGS as readonly string[]).includes(tag);
+}
+
 export const TAG_NAMES = {
 	[GASUQUE]: 'Gasque',
 	[BEER]: 'Beer',
