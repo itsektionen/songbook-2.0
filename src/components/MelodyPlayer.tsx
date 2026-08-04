@@ -87,38 +87,38 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 	const [progress, setProgress] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const playerRef = useRef<Player | null>(null);
-	const playerPromise = useRef<Promise<Player> | null>(null);
+	const playerPromiseRef = useRef<Promise<Player> | null>(null);
 	const startRef = useRef({ offset: 0, time: 0 });
-	const tickTimer = useRef<ReturnType<typeof setInterval> | null>(null);
-	const isMounted = useRef(true);
+	const tickTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+	const isMountedRef = useRef(true);
 	const progressRef = useRef(0);
 
 	function loadPlayer(): Promise<Player> {
-		if (!playerPromise.current) {
-			playerPromise.current = createPlayer(abc).then((player) => {
+		if (!playerPromiseRef.current) {
+			playerPromiseRef.current = createPlayer(abc).then((player) => {
 				playerRef.current = player;
-				if (isMounted.current) setDuration(player.duration);
+				if (isMountedRef.current) setDuration(player.duration);
 				return player;
 			});
-			playerPromise.current.catch(() => (playerPromise.current = null));
+			playerPromiseRef.current.catch(() => (playerPromiseRef.current = null));
 		}
-		return playerPromise.current;
+		return playerPromiseRef.current;
 	}
 
 	useEffect(() => {
-		isMounted.current = true;
+		isMountedRef.current = true;
 		loadPlayer().catch(() => {});
 		return () => {
-			isMounted.current = false;
+			isMountedRef.current = false;
 			clearTickTimer();
 			playerRef.current?.stop();
 		};
 	}, []);
 
 	function clearTickTimer() {
-		if (tickTimer.current) {
-			clearInterval(tickTimer.current);
-			tickTimer.current = null;
+		if (tickTimerRef.current) {
+			clearInterval(tickTimerRef.current);
+			tickTimerRef.current = null;
 		}
 	}
 
@@ -138,7 +138,7 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 	function startClock(offset: number) {
 		startRef.current = { offset, time: clockNow() };
 		clearTickTimer();
-		tickTimer.current = setInterval(() => {
+		tickTimerRef.current = setInterval(() => {
 			const total = playerRef.current?.duration ?? 0;
 			const position = startRef.current.offset + (clockNow() - startRef.current.time);
 			if (total > 0 && position >= total) stop();
@@ -154,11 +154,11 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 		setState('loading');
 		try {
 			const player = await loadPlayer();
-			if (!isMounted.current) {
+			if (!isMountedRef.current) {
 				return;
 			}
 			await player.prime();
-			if (!isMounted.current) {
+			if (!isMountedRef.current) {
 				return;
 			}
 			const offset = progressRef.current;
@@ -170,7 +170,7 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 			setState('playing');
 			startClock(offset);
 		} catch {
-			if (!isMounted.current) return;
+			if (!isMountedRef.current) return;
 			toast.error('Could not play the melody');
 			setState('idle');
 		}
