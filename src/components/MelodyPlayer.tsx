@@ -191,7 +191,7 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 	}[state];
 
 	return (
-		<div className="melody-player">
+		<div className="melody-player gap-lg">
 			<button
 				onClick={isPlaying ? stop : play}
 				disabled={state === 'loading'}
