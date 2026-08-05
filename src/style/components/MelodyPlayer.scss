@@ -2,8 +2,10 @@
 @use '../shared.scss' as *;
 
 .melody-player {
-	display: flex;
-	align-items: center;
+	@extend .flex-row;
+	@extend .items-center;
+	@extend .gap-lg;
+
 	margin: 0.5rem 0;
 	max-width: 24rem;
 
