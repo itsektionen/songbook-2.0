@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import MusicNote from '../icons/MusicNote';
 import Spin from '../icons/Spin';
 import Stop from '../icons/Stop';
-import TrebleClef from '../icons/TrebleClef';
 
 type Player = {
 	prime: () => Promise<void>;
@@ -187,7 +187,7 @@ export default function MelodyPlayer({ abc }: { abc: string }): React.ReactEleme
 	const icon = {
 		loading: <Spin className="loading-spinner" size="sm" />,
 		playing: <Stop size="sm" />,
-		idle: <TrebleClef size="lg" />,
+		idle: <MusicNote size="md" />,
 	}[state];
 
 	return (

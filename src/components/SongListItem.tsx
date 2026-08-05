@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-location';
 import React from 'react';
 import { Song } from '../definitions/songs';
-import TrebleClef from '../icons/TrebleClef';
+import MusicNote from '../icons/MusicNote';
 import TagBadge from './TagBadge';
 
 type SongItemProps = {
@@ -23,7 +23,7 @@ export default function SongItem({ song, from }: SongItemProps): React.ReactElem
 						</div>
 					</div>
 					<div className="preview flex-row items-center gap-md">
-						{song.abc && <TrebleClef size="sm" className="melody-badge" />}
+						{song.abc && <MusicNote size="sm" className="melody-badge" />}
 						<p>
 							{song.content
 								.split('\n\n')
