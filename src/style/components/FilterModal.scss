@@ -36,7 +36,7 @@
 			flex-shrink: 0;
 			width: 20px;
 			height: 20px;
-			border-radius: 999px;
+			border-radius: var(--radius-full);
 			border: 1px solid rgba(var(--primary-dark), 0.15);
 			color: rgb(var(--primary-dark));
 

@@ -24,7 +24,7 @@
 
 		&,
 		&::before {
-			border-radius: 999px;
+			border-radius: var(--radius-full);
 		}
 
 		&:disabled {
