@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
 import AddToBookmarkModal from '../components/AddToBookmarkModal';
+import MelodyPlayer from '../components/MelodyPlayer';
 import Spinner from '../components/Spinner';
 import TagBadge from '../components/TagBadge';
 import { useSongs } from '../context/songContext';
@@ -57,6 +58,7 @@ export default function SongDetails(): React.ReactElement {
 								Melody: {song.melody} {song.composer && `(${song.composer})`}
 							</h3>
 						)}
+						{song.abc && <MelodyPlayer key={song.id} abc={song.abc} />}
 					</div>
 					<div className="tag-row">
 						{song.tags.map((tag) => (

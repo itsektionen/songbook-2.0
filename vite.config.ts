@@ -7,6 +7,8 @@ const getCache = ({ name, pattern }: { name: string; pattern: string | RegExp })
 	handler: 'NetworkFirst' as const,
 	options: {
 		cacheName: name,
+		// Fall back to the cached copy quickly on dead/painfully slow networks
+		networkTimeoutSeconds: 3,
 		expiration: {
 			maxEntries: 500,
 			maxAgeSeconds: 60 * 60 * 24 * 365 * 2, // 2 years
@@ -49,7 +51,7 @@ export default defineConfig({
 							'https://raw.githubusercontent.com/itsektionen/songlist/master/dist/songs.json',
 					}),
 				],
-				globPatterns: ['**/*.{js,css,html}', '*', 'assets/*'],
+				globPatterns: ['**/*.{js,css,html}', '*', 'assets/*', 'soundfonts/**/*.mp3'],
 			},
 		}),
 	],
