@@ -12,7 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Melody player to play a song's melody from ABC notation
-- BookmarksList view
+
+## [0.5.0] - 2026-07-19
+
+### Added
+
+- Fuzzy search
+- Alternative titles search
+- QR sharing
+- New UI
 
 ## [0.4.0] - 2025-12-17
 
@@ -33,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Filtering based on songs
 - Basic reusable `Modal` component
+- BookmarksList view
 
 ## [0.1.1] - 2022-08-16
 
